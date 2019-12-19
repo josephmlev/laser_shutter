@@ -1,0 +1,2409 @@
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"start_pulse.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.start_pulse_Enable,"ax",%progbits
+  20              		.align	2
+  21              		.global	start_pulse_Enable
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	start_pulse_Enable, %function
+  25              	start_pulse_Enable:
+  26              	.LFB2:
+  27              		.file 1 "Generated_Source\\PSoC4\\start_pulse.c"
+   1:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/start_pulse.c **** * File Name: start_pulse.c
+   3:Generated_Source\PSoC4/start_pulse.c **** * Version 3.30
+   4:Generated_Source\PSoC4/start_pulse.c **** *
+   5:Generated_Source\PSoC4/start_pulse.c **** * Description:
+   6:Generated_Source\PSoC4/start_pulse.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:Generated_Source\PSoC4/start_pulse.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:Generated_Source\PSoC4/start_pulse.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:Generated_Source\PSoC4/start_pulse.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:Generated_Source\PSoC4/start_pulse.c **** *  The compare value output may be configured to be active when the present
+  11:Generated_Source\PSoC4/start_pulse.c **** *  counter is less than or less than/equal to the compare value.
+  12:Generated_Source\PSoC4/start_pulse.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:Generated_Source\PSoC4/start_pulse.c **** *  width wide when the counter is equal to zero.
+  14:Generated_Source\PSoC4/start_pulse.c **** *
+  15:Generated_Source\PSoC4/start_pulse.c **** * Note:
+  16:Generated_Source\PSoC4/start_pulse.c **** *
+  17:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************
+  18:Generated_Source\PSoC4/start_pulse.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:Generated_Source\PSoC4/start_pulse.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:Generated_Source\PSoC4/start_pulse.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:Generated_Source\PSoC4/start_pulse.c **** * the software package with which this file was provided.
+  22:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************/
+  23:Generated_Source\PSoC4/start_pulse.c **** 
+  24:Generated_Source\PSoC4/start_pulse.c **** #include "start_pulse.h"
+  25:Generated_Source\PSoC4/start_pulse.c **** 
+  26:Generated_Source\PSoC4/start_pulse.c **** /* Error message for removed <resource> through optimization */
+  27:Generated_Source\PSoC4/start_pulse.c **** #ifdef start_pulse_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:Generated_Source\PSoC4/start_pulse.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:Generated_Source\PSoC4/start_pulse.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:Generated_Source\PSoC4/start_pulse.c **** #endif /* start_pulse_PWMUDB_genblk1_ctrlreg__REMOVED */
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 2
+
+
+  31:Generated_Source\PSoC4/start_pulse.c **** 
+  32:Generated_Source\PSoC4/start_pulse.c **** uint8 start_pulse_initVar = 0u;
+  33:Generated_Source\PSoC4/start_pulse.c **** 
+  34:Generated_Source\PSoC4/start_pulse.c **** 
+  35:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+  36:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_Start
+  37:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+  38:Generated_Source\PSoC4/start_pulse.c **** *
+  39:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+  40:Generated_Source\PSoC4/start_pulse.c **** *  The start function initializes the pwm with the default values, the
+  41:Generated_Source\PSoC4/start_pulse.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:Generated_Source\PSoC4/start_pulse.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:Generated_Source\PSoC4/start_pulse.c **** *
+  44:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+  45:Generated_Source\PSoC4/start_pulse.c **** *  None
+  46:Generated_Source\PSoC4/start_pulse.c **** *
+  47:Generated_Source\PSoC4/start_pulse.c **** * Return:
+  48:Generated_Source\PSoC4/start_pulse.c **** *  None
+  49:Generated_Source\PSoC4/start_pulse.c **** *
+  50:Generated_Source\PSoC4/start_pulse.c **** * Global variables:
+  51:Generated_Source\PSoC4/start_pulse.c **** *  start_pulse_initVar: Is modified when this function is called for the
+  52:Generated_Source\PSoC4/start_pulse.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:Generated_Source\PSoC4/start_pulse.c **** *
+  54:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+  55:Generated_Source\PSoC4/start_pulse.c **** void start_pulse_Start(void) 
+  56:Generated_Source\PSoC4/start_pulse.c **** {
+  57:Generated_Source\PSoC4/start_pulse.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:Generated_Source\PSoC4/start_pulse.c ****     if(start_pulse_initVar == 0u)
+  59:Generated_Source\PSoC4/start_pulse.c ****     {
+  60:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_Init();
+  61:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_initVar = 1u;
+  62:Generated_Source\PSoC4/start_pulse.c ****     }
+  63:Generated_Source\PSoC4/start_pulse.c ****     start_pulse_Enable();
+  64:Generated_Source\PSoC4/start_pulse.c **** 
+  65:Generated_Source\PSoC4/start_pulse.c **** }
+  66:Generated_Source\PSoC4/start_pulse.c **** 
+  67:Generated_Source\PSoC4/start_pulse.c **** 
+  68:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+  69:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_Init
+  70:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+  71:Generated_Source\PSoC4/start_pulse.c **** *
+  72:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+  73:Generated_Source\PSoC4/start_pulse.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:Generated_Source\PSoC4/start_pulse.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:Generated_Source\PSoC4/start_pulse.c **** *  start_pulse_Start().
+  76:Generated_Source\PSoC4/start_pulse.c **** *
+  77:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+  78:Generated_Source\PSoC4/start_pulse.c **** *  None
+  79:Generated_Source\PSoC4/start_pulse.c **** *
+  80:Generated_Source\PSoC4/start_pulse.c **** * Return:
+  81:Generated_Source\PSoC4/start_pulse.c **** *  None
+  82:Generated_Source\PSoC4/start_pulse.c **** *
+  83:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+  84:Generated_Source\PSoC4/start_pulse.c **** void start_pulse_Init(void) 
+  85:Generated_Source\PSoC4/start_pulse.c **** {
+  86:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction || start_pulse_UseControl)
+  87:Generated_Source\PSoC4/start_pulse.c ****         uint8 ctrl;
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 3
+
+
+  88:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction || start_pulse_UseControl) */
+  89:Generated_Source\PSoC4/start_pulse.c **** 
+  90:Generated_Source\PSoC4/start_pulse.c ****     #if(!start_pulse_UsingFixedFunction)
+  91:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UseStatus)
+  92:Generated_Source\PSoC4/start_pulse.c ****             /* Interrupt State Backup for Critical Region*/
+  93:Generated_Source\PSoC4/start_pulse.c ****             uint8 start_pulse_interruptState;
+  94:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UseStatus) */
+  95:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (!start_pulse_UsingFixedFunction) */
+  96:Generated_Source\PSoC4/start_pulse.c **** 
+  97:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction)
+  98:Generated_Source\PSoC4/start_pulse.c ****         /* You are allowed to write the compare value (FF only) */
+  99:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL |= start_pulse_CFG0_MODE;
+ 100:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_DeadBand2_4)
+ 101:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_CONTROL |= start_pulse_CFG0_DB;
+ 102:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_DeadBand2_4) */
+ 103:Generated_Source\PSoC4/start_pulse.c **** 
+ 104:Generated_Source\PSoC4/start_pulse.c ****         ctrl = start_pulse_CONTROL3 & ((uint8 )(~start_pulse_CTRL_CMPMODE1_MASK));
+ 105:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL3 = ctrl | start_pulse_DEFAULT_COMPARE1_MODE;
+ 106:Generated_Source\PSoC4/start_pulse.c **** 
+ 107:Generated_Source\PSoC4/start_pulse.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_RT1 &= ((uint8)(~start_pulse_RT1_MASK));
+ 109:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_RT1 |= start_pulse_SYNC;
+ 110:Generated_Source\PSoC4/start_pulse.c **** 
+ 111:Generated_Source\PSoC4/start_pulse.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_RT1 &= ((uint8)(~start_pulse_SYNCDSI_MASK));
+ 113:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_RT1 |= start_pulse_SYNCDSI_EN;
+ 114:Generated_Source\PSoC4/start_pulse.c **** 
+ 115:Generated_Source\PSoC4/start_pulse.c ****     #elif (start_pulse_UseControl)
+ 116:Generated_Source\PSoC4/start_pulse.c ****         /* Set the default compare mode defined in the parameter */
+ 117:Generated_Source\PSoC4/start_pulse.c ****         ctrl = start_pulse_CONTROL & ((uint8)(~start_pulse_CTRL_CMPMODE2_MASK)) &
+ 118:Generated_Source\PSoC4/start_pulse.c ****                 ((uint8)(~start_pulse_CTRL_CMPMODE1_MASK));
+ 119:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL = ctrl | start_pulse_DEFAULT_COMPARE2_MODE |
+ 120:Generated_Source\PSoC4/start_pulse.c ****                                    start_pulse_DEFAULT_COMPARE1_MODE;
+ 121:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 122:Generated_Source\PSoC4/start_pulse.c **** 
+ 123:Generated_Source\PSoC4/start_pulse.c ****     #if (!start_pulse_UsingFixedFunction)
+ 124:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_Resolution == 8)
+ 125:Generated_Source\PSoC4/start_pulse.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_AUX_CONTROLDP0 |= (start_pulse_AUX_CTRL_FIFO0_CLR);
+ 127:Generated_Source\PSoC4/start_pulse.c ****         #else /* (start_pulse_Resolution == 16)*/
+ 128:Generated_Source\PSoC4/start_pulse.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_AUX_CONTROLDP0 |= (start_pulse_AUX_CTRL_FIFO0_CLR);
+ 130:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_AUX_CONTROLDP1 |= (start_pulse_AUX_CTRL_FIFO0_CLR);
+ 131:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_Resolution == 8) */
+ 132:Generated_Source\PSoC4/start_pulse.c **** 
+ 133:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_WriteCounter(start_pulse_INIT_PERIOD_VALUE);
+ 134:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (!start_pulse_UsingFixedFunction) */
+ 135:Generated_Source\PSoC4/start_pulse.c **** 
+ 136:Generated_Source\PSoC4/start_pulse.c ****     start_pulse_WritePeriod(start_pulse_INIT_PERIOD_VALUE);
+ 137:Generated_Source\PSoC4/start_pulse.c **** 
+ 138:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_UseOneCompareMode)
+ 139:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_WriteCompare(start_pulse_INIT_COMPARE_VALUE1);
+ 140:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 141:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_WriteCompare1(start_pulse_INIT_COMPARE_VALUE1);
+ 142:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_WriteCompare2(start_pulse_INIT_COMPARE_VALUE2);
+ 143:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UseOneCompareMode) */
+ 144:Generated_Source\PSoC4/start_pulse.c **** 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_KillModeMinTime)
+ 146:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_WriteKillTime(start_pulse_MinimumKillTime);
+ 147:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_KillModeMinTime) */
+ 148:Generated_Source\PSoC4/start_pulse.c **** 
+ 149:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_DeadBandUsed)
+ 150:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_WriteDeadTime(start_pulse_INIT_DEAD_TIME);
+ 151:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_DeadBandUsed) */
+ 152:Generated_Source\PSoC4/start_pulse.c **** 
+ 153:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UseStatus || start_pulse_UsingFixedFunction)
+ 154:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_SetInterruptMode(start_pulse_INIT_INTERRUPTS_MODE);
+ 155:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UseStatus || start_pulse_UsingFixedFunction) */
+ 156:Generated_Source\PSoC4/start_pulse.c **** 
+ 157:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction)
+ 158:Generated_Source\PSoC4/start_pulse.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_GLOBAL_ENABLE |= start_pulse_BLOCK_EN_MASK;
+ 160:Generated_Source\PSoC4/start_pulse.c ****         /* Set the Interrupt source to come from the status register */
+ 161:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL2 |= start_pulse_CTRL2_IRQ_SEL;
+ 162:Generated_Source\PSoC4/start_pulse.c ****     #else
+ 163:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UseStatus)
+ 164:Generated_Source\PSoC4/start_pulse.c **** 
+ 165:Generated_Source\PSoC4/start_pulse.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:Generated_Source\PSoC4/start_pulse.c ****             /* Enter Critical Region*/
+ 167:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_interruptState = CyEnterCriticalSection();
+ 168:Generated_Source\PSoC4/start_pulse.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_STATUS_AUX_CTRL |= start_pulse_STATUS_ACTL_INT_EN_MASK;
+ 170:Generated_Source\PSoC4/start_pulse.c **** 
+ 171:Generated_Source\PSoC4/start_pulse.c ****              /* Exit Critical Region*/
+ 172:Generated_Source\PSoC4/start_pulse.c ****             CyExitCriticalSection(start_pulse_interruptState);
+ 173:Generated_Source\PSoC4/start_pulse.c **** 
+ 174:Generated_Source\PSoC4/start_pulse.c ****             /* Clear the FIFO to enable the start_pulse_STATUS_FIFOFULL
+ 175:Generated_Source\PSoC4/start_pulse.c ****                    bit to be set on FIFO full. */
+ 176:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_ClearFIFO();
+ 177:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UseStatus) */
+ 178:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 179:Generated_Source\PSoC4/start_pulse.c **** }
+ 180:Generated_Source\PSoC4/start_pulse.c **** 
+ 181:Generated_Source\PSoC4/start_pulse.c **** 
+ 182:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+ 183:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_Enable
+ 184:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+ 185:Generated_Source\PSoC4/start_pulse.c **** *
+ 186:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+ 187:Generated_Source\PSoC4/start_pulse.c **** *  Enables the PWM block operation
+ 188:Generated_Source\PSoC4/start_pulse.c **** *
+ 189:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+ 190:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 191:Generated_Source\PSoC4/start_pulse.c **** *
+ 192:Generated_Source\PSoC4/start_pulse.c **** * Return:
+ 193:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 194:Generated_Source\PSoC4/start_pulse.c **** *
+ 195:Generated_Source\PSoC4/start_pulse.c **** * Side Effects:
+ 196:Generated_Source\PSoC4/start_pulse.c **** *  This works only if software enable mode is chosen
+ 197:Generated_Source\PSoC4/start_pulse.c **** *
+ 198:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC4/start_pulse.c **** void start_pulse_Enable(void) 
+ 200:Generated_Source\PSoC4/start_pulse.c **** {
+  28              		.loc 1 200 0
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 5
+
+
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 201:Generated_Source\PSoC4/start_pulse.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction)
+ 203:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_GLOBAL_ENABLE |= start_pulse_BLOCK_EN_MASK;
+ 204:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_GLOBAL_STBY_ENABLE |= start_pulse_BLOCK_STBY_EN_MASK;
+ 205:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 206:Generated_Source\PSoC4/start_pulse.c **** 
+ 207:Generated_Source\PSoC4/start_pulse.c ****     /* Enable the PWM from the control register  */
+ 208:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UseControl || start_pulse_UsingFixedFunction)
+ 209:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL |= start_pulse_CTRL_ENABLE;
+ 210:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UseControl || start_pulse_UsingFixedFunction) */
+ 211:Generated_Source\PSoC4/start_pulse.c **** }
+  33              		.loc 1 211 0
+  34              		@ sp needed
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE2:
+  38              		.size	start_pulse_Enable, .-start_pulse_Enable
+  39 0002 C046     		.section	.text.start_pulse_Stop,"ax",%progbits
+  40              		.align	2
+  41              		.global	start_pulse_Stop
+  42              		.code	16
+  43              		.thumb_func
+  44              		.type	start_pulse_Stop, %function
+  45              	start_pulse_Stop:
+  46              	.LFB3:
+ 212:Generated_Source\PSoC4/start_pulse.c **** 
+ 213:Generated_Source\PSoC4/start_pulse.c **** 
+ 214:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+ 215:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_Stop
+ 216:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+ 217:Generated_Source\PSoC4/start_pulse.c **** *
+ 218:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+ 219:Generated_Source\PSoC4/start_pulse.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:Generated_Source\PSoC4/start_pulse.c **** *  interrupts.
+ 221:Generated_Source\PSoC4/start_pulse.c **** *
+ 222:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+ 223:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 224:Generated_Source\PSoC4/start_pulse.c **** *
+ 225:Generated_Source\PSoC4/start_pulse.c **** * Return:
+ 226:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 227:Generated_Source\PSoC4/start_pulse.c **** *
+ 228:Generated_Source\PSoC4/start_pulse.c **** * Side Effects:
+ 229:Generated_Source\PSoC4/start_pulse.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:Generated_Source\PSoC4/start_pulse.c **** *  has no effect on the operation of the PWM
+ 231:Generated_Source\PSoC4/start_pulse.c **** *
+ 232:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+ 233:Generated_Source\PSoC4/start_pulse.c **** void start_pulse_Stop(void) 
+ 234:Generated_Source\PSoC4/start_pulse.c **** {
+  47              		.loc 1 234 0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 6
+
+
+ 235:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UseControl || start_pulse_UsingFixedFunction)
+ 236:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_CONTROL &= ((uint8)(~start_pulse_CTRL_ENABLE));
+ 237:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UseControl || start_pulse_UsingFixedFunction) */
+ 238:Generated_Source\PSoC4/start_pulse.c **** 
+ 239:Generated_Source\PSoC4/start_pulse.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction)
+ 241:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_GLOBAL_ENABLE &= ((uint8)(~start_pulse_BLOCK_EN_MASK));
+ 242:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_GLOBAL_STBY_ENABLE &= ((uint8)(~start_pulse_BLOCK_STBY_EN_MASK));
+ 243:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 244:Generated_Source\PSoC4/start_pulse.c **** }
+  52              		.loc 1 244 0
+  53              		@ sp needed
+  54 0000 7047     		bx	lr
+  55              		.cfi_endproc
+  56              	.LFE3:
+  57              		.size	start_pulse_Stop, .-start_pulse_Stop
+  58 0002 C046     		.section	.text.start_pulse_WriteCounter,"ax",%progbits
+  59              		.align	2
+  60              		.global	start_pulse_WriteCounter
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	start_pulse_WriteCounter, %function
+  64              	start_pulse_WriteCounter:
+  65              	.LFB4:
+ 245:Generated_Source\PSoC4/start_pulse.c **** 
+ 246:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_UseOneCompareMode)
+ 247:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_CompareMode1SW)
+ 248:Generated_Source\PSoC4/start_pulse.c **** 
+ 249:Generated_Source\PSoC4/start_pulse.c **** 
+ 250:Generated_Source\PSoC4/start_pulse.c ****         /*******************************************************************************
+ 251:Generated_Source\PSoC4/start_pulse.c ****         * Function Name: start_pulse_SetCompareMode
+ 252:Generated_Source\PSoC4/start_pulse.c ****         ********************************************************************************
+ 253:Generated_Source\PSoC4/start_pulse.c ****         *
+ 254:Generated_Source\PSoC4/start_pulse.c ****         * Summary:
+ 255:Generated_Source\PSoC4/start_pulse.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:Generated_Source\PSoC4/start_pulse.c ****         *  Center Align Mode or One Output Mode.
+ 257:Generated_Source\PSoC4/start_pulse.c ****         *
+ 258:Generated_Source\PSoC4/start_pulse.c ****         * Parameters:
+ 259:Generated_Source\PSoC4/start_pulse.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:Generated_Source\PSoC4/start_pulse.c ****         *                defined in the H file as input arguments.
+ 261:Generated_Source\PSoC4/start_pulse.c ****         *
+ 262:Generated_Source\PSoC4/start_pulse.c ****         * Return:
+ 263:Generated_Source\PSoC4/start_pulse.c ****         *  None
+ 264:Generated_Source\PSoC4/start_pulse.c ****         *
+ 265:Generated_Source\PSoC4/start_pulse.c ****         *******************************************************************************/
+ 266:Generated_Source\PSoC4/start_pulse.c ****         void start_pulse_SetCompareMode(uint8 comparemode) 
+ 267:Generated_Source\PSoC4/start_pulse.c ****         {
+ 268:Generated_Source\PSoC4/start_pulse.c ****             #if(start_pulse_UsingFixedFunction)
+ 269:Generated_Source\PSoC4/start_pulse.c **** 
+ 270:Generated_Source\PSoC4/start_pulse.c ****                 #if(0 != start_pulse_CTRL_CMPMODE1_SHIFT)
+ 271:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << start_pulse_CTRL_CMPMO
+ 272:Generated_Source\PSoC4/start_pulse.c ****                 #else
+ 273:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemodemasked = comparemode;
+ 274:Generated_Source\PSoC4/start_pulse.c ****                 #endif /* (0 != start_pulse_CTRL_CMPMODE1_SHIFT) */
+ 275:Generated_Source\PSoC4/start_pulse.c **** 
+ 276:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL3 &= ((uint8)(~start_pulse_CTRL_CMPMODE1_MASK)); /*Clear Existin
+ 277:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL3 |= comparemodemasked;
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 7
+
+
+ 278:Generated_Source\PSoC4/start_pulse.c **** 
+ 279:Generated_Source\PSoC4/start_pulse.c ****             #elif (start_pulse_UseControl)
+ 280:Generated_Source\PSoC4/start_pulse.c **** 
+ 281:Generated_Source\PSoC4/start_pulse.c ****                 #if(0 != start_pulse_CTRL_CMPMODE1_SHIFT)
+ 282:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << start_pulse_CTRL_CMPM
+ 283:Generated_Source\PSoC4/start_pulse.c ****                                                 start_pulse_CTRL_CMPMODE1_MASK;
+ 284:Generated_Source\PSoC4/start_pulse.c ****                 #else
+ 285:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemode1masked = comparemode & start_pulse_CTRL_CMPMODE1_MASK;
+ 286:Generated_Source\PSoC4/start_pulse.c ****                 #endif /* (0 != start_pulse_CTRL_CMPMODE1_SHIFT) */
+ 287:Generated_Source\PSoC4/start_pulse.c **** 
+ 288:Generated_Source\PSoC4/start_pulse.c ****                 #if(0 != start_pulse_CTRL_CMPMODE2_SHIFT)
+ 289:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << start_pulse_CTRL_CMPM
+ 290:Generated_Source\PSoC4/start_pulse.c ****                                                start_pulse_CTRL_CMPMODE2_MASK;
+ 291:Generated_Source\PSoC4/start_pulse.c ****                 #else
+ 292:Generated_Source\PSoC4/start_pulse.c ****                     uint8 comparemode2masked = comparemode & start_pulse_CTRL_CMPMODE2_MASK;
+ 293:Generated_Source\PSoC4/start_pulse.c ****                 #endif /* (0 != start_pulse_CTRL_CMPMODE2_SHIFT) */
+ 294:Generated_Source\PSoC4/start_pulse.c **** 
+ 295:Generated_Source\PSoC4/start_pulse.c ****                 /*Clear existing mode */
+ 296:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL &= ((uint8)(~(start_pulse_CTRL_CMPMODE1_MASK |
+ 297:Generated_Source\PSoC4/start_pulse.c ****                                             start_pulse_CTRL_CMPMODE2_MASK)));
+ 298:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:Generated_Source\PSoC4/start_pulse.c **** 
+ 300:Generated_Source\PSoC4/start_pulse.c ****             #else
+ 301:Generated_Source\PSoC4/start_pulse.c ****                 uint8 temp = comparemode;
+ 302:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (start_pulse_UsingFixedFunction) */
+ 303:Generated_Source\PSoC4/start_pulse.c ****         }
+ 304:Generated_Source\PSoC4/start_pulse.c ****     #endif /* start_pulse_CompareMode1SW */
+ 305:Generated_Source\PSoC4/start_pulse.c **** 
+ 306:Generated_Source\PSoC4/start_pulse.c **** #else /* UseOneCompareMode */
+ 307:Generated_Source\PSoC4/start_pulse.c **** 
+ 308:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_CompareMode1SW)
+ 309:Generated_Source\PSoC4/start_pulse.c **** 
+ 310:Generated_Source\PSoC4/start_pulse.c **** 
+ 311:Generated_Source\PSoC4/start_pulse.c ****         /*******************************************************************************
+ 312:Generated_Source\PSoC4/start_pulse.c ****         * Function Name: start_pulse_SetCompareMode1
+ 313:Generated_Source\PSoC4/start_pulse.c ****         ********************************************************************************
+ 314:Generated_Source\PSoC4/start_pulse.c ****         *
+ 315:Generated_Source\PSoC4/start_pulse.c ****         * Summary:
+ 316:Generated_Source\PSoC4/start_pulse.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:Generated_Source\PSoC4/start_pulse.c ****         *
+ 318:Generated_Source\PSoC4/start_pulse.c ****         * Parameters:
+ 319:Generated_Source\PSoC4/start_pulse.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:Generated_Source\PSoC4/start_pulse.c ****         *                defined in the H file as input arguments.
+ 321:Generated_Source\PSoC4/start_pulse.c ****         *
+ 322:Generated_Source\PSoC4/start_pulse.c ****         * Return:
+ 323:Generated_Source\PSoC4/start_pulse.c ****         *  None
+ 324:Generated_Source\PSoC4/start_pulse.c ****         *
+ 325:Generated_Source\PSoC4/start_pulse.c ****         *******************************************************************************/
+ 326:Generated_Source\PSoC4/start_pulse.c ****         void start_pulse_SetCompareMode1(uint8 comparemode) 
+ 327:Generated_Source\PSoC4/start_pulse.c ****         {
+ 328:Generated_Source\PSoC4/start_pulse.c ****             #if(0 != start_pulse_CTRL_CMPMODE1_SHIFT)
+ 329:Generated_Source\PSoC4/start_pulse.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << start_pulse_CTRL_CMPMODE1_
+ 330:Generated_Source\PSoC4/start_pulse.c ****                                            start_pulse_CTRL_CMPMODE1_MASK;
+ 331:Generated_Source\PSoC4/start_pulse.c ****             #else
+ 332:Generated_Source\PSoC4/start_pulse.c ****                 uint8 comparemodemasked = comparemode & start_pulse_CTRL_CMPMODE1_MASK;
+ 333:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (0 != start_pulse_CTRL_CMPMODE1_SHIFT) */
+ 334:Generated_Source\PSoC4/start_pulse.c **** 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 8
+
+
+ 335:Generated_Source\PSoC4/start_pulse.c ****             #if (start_pulse_UseControl)
+ 336:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL &= ((uint8)(~start_pulse_CTRL_CMPMODE1_MASK)); /*Clear existing
+ 337:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_CONTROL |= comparemodemasked;
+ 338:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (start_pulse_UseControl) */
+ 339:Generated_Source\PSoC4/start_pulse.c ****         }
+ 340:Generated_Source\PSoC4/start_pulse.c ****     #endif /* start_pulse_CompareMode1SW */
+ 341:Generated_Source\PSoC4/start_pulse.c **** 
+ 342:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_CompareMode2SW)
+ 343:Generated_Source\PSoC4/start_pulse.c **** 
+ 344:Generated_Source\PSoC4/start_pulse.c **** 
+ 345:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 346:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_SetCompareMode2
+ 347:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 348:Generated_Source\PSoC4/start_pulse.c ****     *
+ 349:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 350:Generated_Source\PSoC4/start_pulse.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:Generated_Source\PSoC4/start_pulse.c ****     *
+ 352:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 353:Generated_Source\PSoC4/start_pulse.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:Generated_Source\PSoC4/start_pulse.c ****     *                defined in the H file as input arguments.
+ 355:Generated_Source\PSoC4/start_pulse.c ****     *
+ 356:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 357:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 358:Generated_Source\PSoC4/start_pulse.c ****     *
+ 359:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 360:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_SetCompareMode2(uint8 comparemode) 
+ 361:Generated_Source\PSoC4/start_pulse.c ****     {
+ 362:Generated_Source\PSoC4/start_pulse.c **** 
+ 363:Generated_Source\PSoC4/start_pulse.c ****         #if(0 != start_pulse_CTRL_CMPMODE2_SHIFT)
+ 364:Generated_Source\PSoC4/start_pulse.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << start_pulse_CTRL_CMPMODE2_SHIF
+ 365:Generated_Source\PSoC4/start_pulse.c ****                                                  start_pulse_CTRL_CMPMODE2_MASK;
+ 366:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 367:Generated_Source\PSoC4/start_pulse.c ****             uint8 comparemodemasked = comparemode & start_pulse_CTRL_CMPMODE2_MASK;
+ 368:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (0 != start_pulse_CTRL_CMPMODE2_SHIFT) */
+ 369:Generated_Source\PSoC4/start_pulse.c **** 
+ 370:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_UseControl)
+ 371:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_CONTROL &= ((uint8)(~start_pulse_CTRL_CMPMODE2_MASK)); /*Clear existing mod
+ 372:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_CONTROL |= comparemodemasked;
+ 373:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UseControl) */
+ 374:Generated_Source\PSoC4/start_pulse.c ****     }
+ 375:Generated_Source\PSoC4/start_pulse.c ****     #endif /*start_pulse_CompareMode2SW */
+ 376:Generated_Source\PSoC4/start_pulse.c **** 
+ 377:Generated_Source\PSoC4/start_pulse.c **** #endif /* UseOneCompareMode */
+ 378:Generated_Source\PSoC4/start_pulse.c **** 
+ 379:Generated_Source\PSoC4/start_pulse.c **** 
+ 380:Generated_Source\PSoC4/start_pulse.c **** #if (!start_pulse_UsingFixedFunction)
+ 381:Generated_Source\PSoC4/start_pulse.c **** 
+ 382:Generated_Source\PSoC4/start_pulse.c **** 
+ 383:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 384:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteCounter
+ 385:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 386:Generated_Source\PSoC4/start_pulse.c ****     *
+ 387:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 388:Generated_Source\PSoC4/start_pulse.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:Generated_Source\PSoC4/start_pulse.c ****     *  implemented for that currently running period and only that period. This API
+ 390:Generated_Source\PSoC4/start_pulse.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:Generated_Source\PSoC4/start_pulse.c ****     *  PWM implementation.
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 9
+
+
+ 392:Generated_Source\PSoC4/start_pulse.c ****     *
+ 393:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 394:Generated_Source\PSoC4/start_pulse.c ****     *  counter:  The period new period counter value.
+ 395:Generated_Source\PSoC4/start_pulse.c ****     *
+ 396:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 397:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 398:Generated_Source\PSoC4/start_pulse.c ****     *
+ 399:Generated_Source\PSoC4/start_pulse.c ****     * Side Effects:
+ 400:Generated_Source\PSoC4/start_pulse.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:Generated_Source\PSoC4/start_pulse.c ****     *
+ 402:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 403:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteCounter(uint16 counter) \
+ 404:Generated_Source\PSoC4/start_pulse.c ****                                        
+ 405:Generated_Source\PSoC4/start_pulse.c ****     {
+  66              		.loc 1 405 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  71              	.LVL0:
+ 406:Generated_Source\PSoC4/start_pulse.c ****         CY_SET_REG16(start_pulse_COUNTER_LSB_PTR, counter);
+  72              		.loc 1 406 0
+  73 0000 014B     		ldr	r3, .L4
+  74 0002 1880     		strh	r0, [r3]
+ 407:Generated_Source\PSoC4/start_pulse.c ****     }
+  75              		.loc 1 407 0
+  76              		@ sp needed
+  77 0004 7047     		bx	lr
+  78              	.L5:
+  79 0006 C046     		.align	2
+  80              	.L4:
+  81 0008 00100F40 		.word	1074728960
+  82              		.cfi_endproc
+  83              	.LFE4:
+  84              		.size	start_pulse_WriteCounter, .-start_pulse_WriteCounter
+  85              		.section	.text.start_pulse_ReadCounter,"ax",%progbits
+  86              		.align	2
+  87              		.global	start_pulse_ReadCounter
+  88              		.code	16
+  89              		.thumb_func
+  90              		.type	start_pulse_ReadCounter, %function
+  91              	start_pulse_ReadCounter:
+  92              	.LFB5:
+ 408:Generated_Source\PSoC4/start_pulse.c **** 
+ 409:Generated_Source\PSoC4/start_pulse.c **** 
+ 410:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 411:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadCounter
+ 412:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 413:Generated_Source\PSoC4/start_pulse.c ****     *
+ 414:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 415:Generated_Source\PSoC4/start_pulse.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:Generated_Source\PSoC4/start_pulse.c ****     *  if the counter is enabled or running.
+ 417:Generated_Source\PSoC4/start_pulse.c ****     *
+ 418:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 419:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 420:Generated_Source\PSoC4/start_pulse.c ****     *
+ 421:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 10
+
+
+ 422:Generated_Source\PSoC4/start_pulse.c ****     *  The current value of the counter.
+ 423:Generated_Source\PSoC4/start_pulse.c ****     *
+ 424:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 425:Generated_Source\PSoC4/start_pulse.c ****     uint16 start_pulse_ReadCounter(void) 
+ 426:Generated_Source\PSoC4/start_pulse.c ****     {
+  93              		.loc 1 426 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+ 427:Generated_Source\PSoC4/start_pulse.c ****         /* Force capture by reading Accumulator */
+ 428:Generated_Source\PSoC4/start_pulse.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:Generated_Source\PSoC4/start_pulse.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:Generated_Source\PSoC4/start_pulse.c ****           (void)CY_GET_REG8(start_pulse_COUNTERCAP_LSB_PTR_8BIT);
+  98              		.loc 1 430 0
+  99 0000 024B     		ldr	r3, .L7
+ 100 0002 1B78     		ldrb	r3, [r3]
+ 431:Generated_Source\PSoC4/start_pulse.c **** 
+ 432:Generated_Source\PSoC4/start_pulse.c ****         /* Read the data from the FIFO */
+ 433:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG16(start_pulse_CAPTURE_LSB_PTR));
+ 101              		.loc 1 433 0
+ 102 0004 024B     		ldr	r3, .L7+4
+ 103 0006 1888     		ldrh	r0, [r3]
+ 104 0008 80B2     		uxth	r0, r0
+ 434:Generated_Source\PSoC4/start_pulse.c ****     }
+ 105              		.loc 1 434 0
+ 106              		@ sp needed
+ 107 000a 7047     		bx	lr
+ 108              	.L8:
+ 109              		.align	2
+ 110              	.L7:
+ 111 000c 10000F40 		.word	1074724880
+ 112 0010 A0100F40 		.word	1074729120
+ 113              		.cfi_endproc
+ 114              	.LFE5:
+ 115              		.size	start_pulse_ReadCounter, .-start_pulse_ReadCounter
+ 116              		.section	.text.start_pulse_WritePeriod,"ax",%progbits
+ 117              		.align	2
+ 118              		.global	start_pulse_WritePeriod
+ 119              		.code	16
+ 120              		.thumb_func
+ 121              		.type	start_pulse_WritePeriod, %function
+ 122              	start_pulse_WritePeriod:
+ 123              	.LFB7:
+ 435:Generated_Source\PSoC4/start_pulse.c **** 
+ 436:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UseStatus)
+ 437:Generated_Source\PSoC4/start_pulse.c **** 
+ 438:Generated_Source\PSoC4/start_pulse.c **** 
+ 439:Generated_Source\PSoC4/start_pulse.c ****         /*******************************************************************************
+ 440:Generated_Source\PSoC4/start_pulse.c ****         * Function Name: start_pulse_ClearFIFO
+ 441:Generated_Source\PSoC4/start_pulse.c ****         ********************************************************************************
+ 442:Generated_Source\PSoC4/start_pulse.c ****         *
+ 443:Generated_Source\PSoC4/start_pulse.c ****         * Summary:
+ 444:Generated_Source\PSoC4/start_pulse.c ****         *  This function clears all capture data from the capture FIFO
+ 445:Generated_Source\PSoC4/start_pulse.c ****         *
+ 446:Generated_Source\PSoC4/start_pulse.c ****         * Parameters:
+ 447:Generated_Source\PSoC4/start_pulse.c ****         *  None
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 11
+
+
+ 448:Generated_Source\PSoC4/start_pulse.c ****         *
+ 449:Generated_Source\PSoC4/start_pulse.c ****         * Return:
+ 450:Generated_Source\PSoC4/start_pulse.c ****         *  None
+ 451:Generated_Source\PSoC4/start_pulse.c ****         *
+ 452:Generated_Source\PSoC4/start_pulse.c ****         *******************************************************************************/
+ 453:Generated_Source\PSoC4/start_pulse.c ****         void start_pulse_ClearFIFO(void) 
+ 454:Generated_Source\PSoC4/start_pulse.c ****         {
+ 455:Generated_Source\PSoC4/start_pulse.c ****             while(0u != (start_pulse_ReadStatusRegister() & start_pulse_STATUS_FIFONEMPTY))
+ 456:Generated_Source\PSoC4/start_pulse.c ****             {
+ 457:Generated_Source\PSoC4/start_pulse.c ****                 (void)start_pulse_ReadCapture();
+ 458:Generated_Source\PSoC4/start_pulse.c ****             }
+ 459:Generated_Source\PSoC4/start_pulse.c ****         }
+ 460:Generated_Source\PSoC4/start_pulse.c **** 
+ 461:Generated_Source\PSoC4/start_pulse.c ****     #endif /* start_pulse_UseStatus */
+ 462:Generated_Source\PSoC4/start_pulse.c **** 
+ 463:Generated_Source\PSoC4/start_pulse.c **** #endif /* !start_pulse_UsingFixedFunction */
+ 464:Generated_Source\PSoC4/start_pulse.c **** 
+ 465:Generated_Source\PSoC4/start_pulse.c **** 
+ 466:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+ 467:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_WritePeriod
+ 468:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+ 469:Generated_Source\PSoC4/start_pulse.c **** *
+ 470:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+ 471:Generated_Source\PSoC4/start_pulse.c **** *  This function is used to change the period of the counter.  The new period
+ 472:Generated_Source\PSoC4/start_pulse.c **** *  will be loaded the next time terminal count is detected.
+ 473:Generated_Source\PSoC4/start_pulse.c **** *
+ 474:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+ 475:Generated_Source\PSoC4/start_pulse.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:Generated_Source\PSoC4/start_pulse.c **** *           will result in the counter remaining at zero.
+ 477:Generated_Source\PSoC4/start_pulse.c **** *
+ 478:Generated_Source\PSoC4/start_pulse.c **** * Return:
+ 479:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 480:Generated_Source\PSoC4/start_pulse.c **** *
+ 481:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+ 482:Generated_Source\PSoC4/start_pulse.c **** void start_pulse_WritePeriod(uint16 period) 
+ 483:Generated_Source\PSoC4/start_pulse.c **** {
+ 124              		.loc 1 483 0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		@ link register save eliminated.
+ 129              	.LVL1:
+ 484:Generated_Source\PSoC4/start_pulse.c ****     #if(start_pulse_UsingFixedFunction)
+ 485:Generated_Source\PSoC4/start_pulse.c ****         CY_SET_REG16(start_pulse_PERIOD_LSB_PTR, (uint16)period);
+ 486:Generated_Source\PSoC4/start_pulse.c ****     #else
+ 487:Generated_Source\PSoC4/start_pulse.c ****         CY_SET_REG16(start_pulse_PERIOD_LSB_PTR, period);
+ 130              		.loc 1 487 0
+ 131 0000 014B     		ldr	r3, .L10
+ 132 0002 1880     		strh	r0, [r3]
+ 488:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 489:Generated_Source\PSoC4/start_pulse.c **** }
+ 133              		.loc 1 489 0
+ 134              		@ sp needed
+ 135 0004 7047     		bx	lr
+ 136              	.L11:
+ 137 0006 C046     		.align	2
+ 138              	.L10:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 12
+
+
+ 139 0008 80100F40 		.word	1074729088
+ 140              		.cfi_endproc
+ 141              	.LFE7:
+ 142              		.size	start_pulse_WritePeriod, .-start_pulse_WritePeriod
+ 143              		.section	.text.start_pulse_WriteCompare,"ax",%progbits
+ 144              		.align	2
+ 145              		.global	start_pulse_WriteCompare
+ 146              		.code	16
+ 147              		.thumb_func
+ 148              		.type	start_pulse_WriteCompare, %function
+ 149              	start_pulse_WriteCompare:
+ 150              	.LFB8:
+ 490:Generated_Source\PSoC4/start_pulse.c **** 
+ 491:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_UseOneCompareMode)
+ 492:Generated_Source\PSoC4/start_pulse.c **** 
+ 493:Generated_Source\PSoC4/start_pulse.c **** 
+ 494:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 495:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteCompare
+ 496:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 497:Generated_Source\PSoC4/start_pulse.c ****     *
+ 498:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 499:Generated_Source\PSoC4/start_pulse.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:Generated_Source\PSoC4/start_pulse.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:Generated_Source\PSoC4/start_pulse.c ****     *  The compare output will be driven high when the present counter value is
+ 502:Generated_Source\PSoC4/start_pulse.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:Generated_Source\PSoC4/start_pulse.c ****     *  Dither Mode.
+ 504:Generated_Source\PSoC4/start_pulse.c ****     *
+ 505:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 506:Generated_Source\PSoC4/start_pulse.c ****     *  compare:  New compare value.
+ 507:Generated_Source\PSoC4/start_pulse.c ****     *
+ 508:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 509:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 510:Generated_Source\PSoC4/start_pulse.c ****     *
+ 511:Generated_Source\PSoC4/start_pulse.c ****     * Side Effects:
+ 512:Generated_Source\PSoC4/start_pulse.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:Generated_Source\PSoC4/start_pulse.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:Generated_Source\PSoC4/start_pulse.c ****     *
+ 515:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 516:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteCompare(uint16 compare) \
+ 517:Generated_Source\PSoC4/start_pulse.c ****                                        
+ 518:Generated_Source\PSoC4/start_pulse.c ****     {
+ 151              		.loc 1 518 0
+ 152              		.cfi_startproc
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155              		@ link register save eliminated.
+ 156              	.LVL2:
+ 519:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UsingFixedFunction)
+ 520:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 522:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE1_LSB_PTR, compare);
+ 157              		.loc 1 522 0
+ 158 0000 014B     		ldr	r3, .L13
+ 159 0002 1880     		strh	r0, [r3]
+ 523:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UsingFixedFunction) */
+ 524:Generated_Source\PSoC4/start_pulse.c **** 
+ 525:Generated_Source\PSoC4/start_pulse.c ****         #if (start_pulse_PWMMode == start_pulse__B_PWM__DITHER)
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 13
+
+
+ 526:Generated_Source\PSoC4/start_pulse.c ****             #if(start_pulse_UsingFixedFunction)
+ 527:Generated_Source\PSoC4/start_pulse.c ****                 CY_SET_REG16(start_pulse_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ 528:Generated_Source\PSoC4/start_pulse.c ****             #else
+ 529:Generated_Source\PSoC4/start_pulse.c ****                 CY_SET_REG16(start_pulse_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (start_pulse_UsingFixedFunction) */
+ 531:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_PWMMode == start_pulse__B_PWM__DITHER) */
+ 532:Generated_Source\PSoC4/start_pulse.c ****     }
+ 160              		.loc 1 532 0
+ 161              		@ sp needed
+ 162 0004 7047     		bx	lr
+ 163              	.L14:
+ 164 0006 C046     		.align	2
+ 165              	.L13:
+ 166 0008 40100F40 		.word	1074729024
+ 167              		.cfi_endproc
+ 168              	.LFE8:
+ 169              		.size	start_pulse_WriteCompare, .-start_pulse_WriteCompare
+ 170              		.section	.text.start_pulse_SetInterruptMode,"ax",%progbits
+ 171              		.align	2
+ 172              		.global	start_pulse_SetInterruptMode
+ 173              		.code	16
+ 174              		.thumb_func
+ 175              		.type	start_pulse_SetInterruptMode, %function
+ 176              	start_pulse_SetInterruptMode:
+ 177              	.LFB9:
+ 533:Generated_Source\PSoC4/start_pulse.c **** 
+ 534:Generated_Source\PSoC4/start_pulse.c **** 
+ 535:Generated_Source\PSoC4/start_pulse.c **** #else
+ 536:Generated_Source\PSoC4/start_pulse.c **** 
+ 537:Generated_Source\PSoC4/start_pulse.c **** 
+ 538:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 539:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteCompare1
+ 540:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 541:Generated_Source\PSoC4/start_pulse.c ****     *
+ 542:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 543:Generated_Source\PSoC4/start_pulse.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:Generated_Source\PSoC4/start_pulse.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:Generated_Source\PSoC4/start_pulse.c ****     *  driven high when the present counter value is less than or less than or
+ 546:Generated_Source\PSoC4/start_pulse.c ****     *  equal to the compare register, depending on the mode.
+ 547:Generated_Source\PSoC4/start_pulse.c ****     *
+ 548:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 549:Generated_Source\PSoC4/start_pulse.c ****     *  compare:  New compare value.
+ 550:Generated_Source\PSoC4/start_pulse.c ****     *
+ 551:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 552:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 553:Generated_Source\PSoC4/start_pulse.c ****     *
+ 554:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 555:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteCompare1(uint16 compare) \
+ 556:Generated_Source\PSoC4/start_pulse.c ****                                         
+ 557:Generated_Source\PSoC4/start_pulse.c ****     {
+ 558:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UsingFixedFunction)
+ 559:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 561:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE1_LSB_PTR, compare);
+ 562:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UsingFixedFunction) */
+ 563:Generated_Source\PSoC4/start_pulse.c ****     }
+ 564:Generated_Source\PSoC4/start_pulse.c **** 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 14
+
+
+ 565:Generated_Source\PSoC4/start_pulse.c **** 
+ 566:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 567:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteCompare2
+ 568:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 569:Generated_Source\PSoC4/start_pulse.c ****     *
+ 570:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 571:Generated_Source\PSoC4/start_pulse.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:Generated_Source\PSoC4/start_pulse.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:Generated_Source\PSoC4/start_pulse.c ****     *  The compare output will be driven high when the present counter value is
+ 574:Generated_Source\PSoC4/start_pulse.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:Generated_Source\PSoC4/start_pulse.c ****     *  mode.
+ 576:Generated_Source\PSoC4/start_pulse.c ****     *
+ 577:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 578:Generated_Source\PSoC4/start_pulse.c ****     *  compare:  New compare value.
+ 579:Generated_Source\PSoC4/start_pulse.c ****     *
+ 580:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 581:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 582:Generated_Source\PSoC4/start_pulse.c ****     *
+ 583:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 584:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteCompare2(uint16 compare) \
+ 585:Generated_Source\PSoC4/start_pulse.c ****                                         
+ 586:Generated_Source\PSoC4/start_pulse.c ****     {
+ 587:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UsingFixedFunction)
+ 588:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE2_LSB_PTR, compare);
+ 589:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 590:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG16(start_pulse_COMPARE2_LSB_PTR, compare);
+ 591:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UsingFixedFunction) */
+ 592:Generated_Source\PSoC4/start_pulse.c ****     }
+ 593:Generated_Source\PSoC4/start_pulse.c **** #endif /* UseOneCompareMode */
+ 594:Generated_Source\PSoC4/start_pulse.c **** 
+ 595:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_DeadBandUsed)
+ 596:Generated_Source\PSoC4/start_pulse.c **** 
+ 597:Generated_Source\PSoC4/start_pulse.c **** 
+ 598:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 599:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteDeadTime
+ 600:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 601:Generated_Source\PSoC4/start_pulse.c ****     *
+ 602:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 603:Generated_Source\PSoC4/start_pulse.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:Generated_Source\PSoC4/start_pulse.c ****     *
+ 605:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 606:Generated_Source\PSoC4/start_pulse.c ****     *  deadtime:  Number of counts for dead time
+ 607:Generated_Source\PSoC4/start_pulse.c ****     *
+ 608:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 609:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 610:Generated_Source\PSoC4/start_pulse.c ****     *
+ 611:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 612:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteDeadTime(uint8 deadtime) 
+ 613:Generated_Source\PSoC4/start_pulse.c ****     {
+ 614:Generated_Source\PSoC4/start_pulse.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:Generated_Source\PSoC4/start_pulse.c ****         #if(!start_pulse_DeadBand2_4)
+ 616:Generated_Source\PSoC4/start_pulse.c ****             CY_SET_REG8(start_pulse_DEADBAND_COUNT_PTR, deadtime);
+ 617:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 618:Generated_Source\PSoC4/start_pulse.c ****             /* Otherwise the data has to be masked and offset */
+ 619:Generated_Source\PSoC4/start_pulse.c ****             /* Clear existing data */
+ 620:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_DEADBAND_COUNT &= ((uint8)(~start_pulse_DEADBAND_COUNT_MASK));
+ 621:Generated_Source\PSoC4/start_pulse.c **** 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 15
+
+
+ 622:Generated_Source\PSoC4/start_pulse.c ****             /* Set new dead time */
+ 623:Generated_Source\PSoC4/start_pulse.c ****             #if(start_pulse_DEADBAND_COUNT_SHIFT)
+ 624:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << start_pulse_DEADBAND_COUN
+ 625:Generated_Source\PSoC4/start_pulse.c ****                                                     start_pulse_DEADBAND_COUNT_MASK;
+ 626:Generated_Source\PSoC4/start_pulse.c ****             #else
+ 627:Generated_Source\PSoC4/start_pulse.c ****                 start_pulse_DEADBAND_COUNT |= deadtime & start_pulse_DEADBAND_COUNT_MASK;
+ 628:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (start_pulse_DEADBAND_COUNT_SHIFT) */
+ 629:Generated_Source\PSoC4/start_pulse.c **** 
+ 630:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (!start_pulse_DeadBand2_4) */
+ 631:Generated_Source\PSoC4/start_pulse.c ****     }
+ 632:Generated_Source\PSoC4/start_pulse.c **** 
+ 633:Generated_Source\PSoC4/start_pulse.c **** 
+ 634:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 635:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadDeadTime
+ 636:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 637:Generated_Source\PSoC4/start_pulse.c ****     *
+ 638:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 639:Generated_Source\PSoC4/start_pulse.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:Generated_Source\PSoC4/start_pulse.c ****     *
+ 641:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 642:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 643:Generated_Source\PSoC4/start_pulse.c ****     *
+ 644:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 645:Generated_Source\PSoC4/start_pulse.c ****     *  Dead Band Counts
+ 646:Generated_Source\PSoC4/start_pulse.c ****     *
+ 647:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 648:Generated_Source\PSoC4/start_pulse.c ****     uint8 start_pulse_ReadDeadTime(void) 
+ 649:Generated_Source\PSoC4/start_pulse.c ****     {
+ 650:Generated_Source\PSoC4/start_pulse.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:Generated_Source\PSoC4/start_pulse.c ****         #if(!start_pulse_DeadBand2_4)
+ 652:Generated_Source\PSoC4/start_pulse.c ****             return (CY_GET_REG8(start_pulse_DEADBAND_COUNT_PTR));
+ 653:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 654:Generated_Source\PSoC4/start_pulse.c **** 
+ 655:Generated_Source\PSoC4/start_pulse.c ****             /* Otherwise the data has to be masked and offset */
+ 656:Generated_Source\PSoC4/start_pulse.c ****             #if(start_pulse_DEADBAND_COUNT_SHIFT)
+ 657:Generated_Source\PSoC4/start_pulse.c ****                 return ((uint8)(((uint8)(start_pulse_DEADBAND_COUNT & start_pulse_DEADBAND_COUNT_MA
+ 658:Generated_Source\PSoC4/start_pulse.c ****                                                                            start_pulse_DEADBAND_COU
+ 659:Generated_Source\PSoC4/start_pulse.c ****             #else
+ 660:Generated_Source\PSoC4/start_pulse.c ****                 return (start_pulse_DEADBAND_COUNT & start_pulse_DEADBAND_COUNT_MASK);
+ 661:Generated_Source\PSoC4/start_pulse.c ****             #endif /* (start_pulse_DEADBAND_COUNT_SHIFT) */
+ 662:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (!start_pulse_DeadBand2_4) */
+ 663:Generated_Source\PSoC4/start_pulse.c ****     }
+ 664:Generated_Source\PSoC4/start_pulse.c **** #endif /* DeadBandUsed */
+ 665:Generated_Source\PSoC4/start_pulse.c **** 
+ 666:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_UseStatus || start_pulse_UsingFixedFunction)
+ 667:Generated_Source\PSoC4/start_pulse.c **** 
+ 668:Generated_Source\PSoC4/start_pulse.c **** 
+ 669:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 670:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_SetInterruptMode
+ 671:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 672:Generated_Source\PSoC4/start_pulse.c ****     *
+ 673:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 674:Generated_Source\PSoC4/start_pulse.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:Generated_Source\PSoC4/start_pulse.c ****     *  source status register.
+ 676:Generated_Source\PSoC4/start_pulse.c ****     *
+ 677:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 678:Generated_Source\PSoC4/start_pulse.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 16
+
+
+ 679:Generated_Source\PSoC4/start_pulse.c ****     *
+ 680:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 681:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 682:Generated_Source\PSoC4/start_pulse.c ****     *
+ 683:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 684:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_SetInterruptMode(uint8 interruptMode) 
+ 685:Generated_Source\PSoC4/start_pulse.c ****     {
+ 178              		.loc 1 685 0
+ 179              		.cfi_startproc
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182              		@ link register save eliminated.
+ 183              	.LVL3:
+ 686:Generated_Source\PSoC4/start_pulse.c ****         CY_SET_REG8(start_pulse_STATUS_MASK_PTR, interruptMode);
+ 184              		.loc 1 686 0
+ 185 0000 014B     		ldr	r3, .L16
+ 186 0002 1870     		strb	r0, [r3]
+ 687:Generated_Source\PSoC4/start_pulse.c ****     }
+ 187              		.loc 1 687 0
+ 188              		@ sp needed
+ 189 0004 7047     		bx	lr
+ 190              	.L17:
+ 191 0006 C046     		.align	2
+ 192              	.L16:
+ 193 0008 81000F40 		.word	1074724993
+ 194              		.cfi_endproc
+ 195              	.LFE9:
+ 196              		.size	start_pulse_SetInterruptMode, .-start_pulse_SetInterruptMode
+ 197              		.section	.text.start_pulse_ReadStatusRegister,"ax",%progbits
+ 198              		.align	2
+ 199              		.global	start_pulse_ReadStatusRegister
+ 200              		.code	16
+ 201              		.thumb_func
+ 202              		.type	start_pulse_ReadStatusRegister, %function
+ 203              	start_pulse_ReadStatusRegister:
+ 204              	.LFB10:
+ 688:Generated_Source\PSoC4/start_pulse.c **** 
+ 689:Generated_Source\PSoC4/start_pulse.c **** 
+ 690:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 691:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadStatusRegister
+ 692:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 693:Generated_Source\PSoC4/start_pulse.c ****     *
+ 694:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 695:Generated_Source\PSoC4/start_pulse.c ****     *  This function returns the current state of the status register.
+ 696:Generated_Source\PSoC4/start_pulse.c ****     *
+ 697:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 698:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 699:Generated_Source\PSoC4/start_pulse.c ****     *
+ 700:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 701:Generated_Source\PSoC4/start_pulse.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:Generated_Source\PSoC4/start_pulse.c ****     *  [7:6] : Unused(0)
+ 703:Generated_Source\PSoC4/start_pulse.c ****     *  [5]   : Kill event output
+ 704:Generated_Source\PSoC4/start_pulse.c ****     *  [4]   : FIFO not empty
+ 705:Generated_Source\PSoC4/start_pulse.c ****     *  [3]   : FIFO full
+ 706:Generated_Source\PSoC4/start_pulse.c ****     *  [2]   : Terminal count
+ 707:Generated_Source\PSoC4/start_pulse.c ****     *  [1]   : Compare output 2
+ 708:Generated_Source\PSoC4/start_pulse.c ****     *  [0]   : Compare output 1
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 17
+
+
+ 709:Generated_Source\PSoC4/start_pulse.c ****     *
+ 710:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 711:Generated_Source\PSoC4/start_pulse.c ****     uint8 start_pulse_ReadStatusRegister(void) 
+ 712:Generated_Source\PSoC4/start_pulse.c ****     {
+ 205              		.loc 1 712 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209              		@ link register save eliminated.
+ 713:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG8(start_pulse_STATUS_PTR));
+ 210              		.loc 1 713 0
+ 211 0000 014B     		ldr	r3, .L19
+ 212 0002 1878     		ldrb	r0, [r3]
+ 213 0004 C0B2     		uxtb	r0, r0
+ 714:Generated_Source\PSoC4/start_pulse.c ****     }
+ 214              		.loc 1 714 0
+ 215              		@ sp needed
+ 216 0006 7047     		bx	lr
+ 217              	.L20:
+ 218              		.align	2
+ 219              	.L19:
+ 220 0008 61000F40 		.word	1074724961
+ 221              		.cfi_endproc
+ 222              	.LFE10:
+ 223              		.size	start_pulse_ReadStatusRegister, .-start_pulse_ReadStatusRegister
+ 224              		.section	.text.start_pulse_ReadCapture,"ax",%progbits
+ 225              		.align	2
+ 226              		.global	start_pulse_ReadCapture
+ 227              		.code	16
+ 228              		.thumb_func
+ 229              		.type	start_pulse_ReadCapture, %function
+ 230              	start_pulse_ReadCapture:
+ 231              	.LFB11:
+ 715:Generated_Source\PSoC4/start_pulse.c **** 
+ 716:Generated_Source\PSoC4/start_pulse.c **** #endif /* (start_pulse_UseStatus || start_pulse_UsingFixedFunction) */
+ 717:Generated_Source\PSoC4/start_pulse.c **** 
+ 718:Generated_Source\PSoC4/start_pulse.c **** 
+ 719:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_UseControl)
+ 720:Generated_Source\PSoC4/start_pulse.c **** 
+ 721:Generated_Source\PSoC4/start_pulse.c **** 
+ 722:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 723:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadControlRegister
+ 724:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 725:Generated_Source\PSoC4/start_pulse.c ****     *
+ 726:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 727:Generated_Source\PSoC4/start_pulse.c ****     *  Returns the current state of the control register. This API is available
+ 728:Generated_Source\PSoC4/start_pulse.c ****     *  only if the control register is not removed.
+ 729:Generated_Source\PSoC4/start_pulse.c ****     *
+ 730:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 731:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 732:Generated_Source\PSoC4/start_pulse.c ****     *
+ 733:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 734:Generated_Source\PSoC4/start_pulse.c ****     *  uint8 : Current control register value
+ 735:Generated_Source\PSoC4/start_pulse.c ****     *
+ 736:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 737:Generated_Source\PSoC4/start_pulse.c ****     uint8 start_pulse_ReadControlRegister(void) 
+ 738:Generated_Source\PSoC4/start_pulse.c ****     {
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 18
+
+
+ 739:Generated_Source\PSoC4/start_pulse.c ****         uint8 result;
+ 740:Generated_Source\PSoC4/start_pulse.c **** 
+ 741:Generated_Source\PSoC4/start_pulse.c ****         result = CY_GET_REG8(start_pulse_CONTROL_PTR);
+ 742:Generated_Source\PSoC4/start_pulse.c ****         return (result);
+ 743:Generated_Source\PSoC4/start_pulse.c ****     }
+ 744:Generated_Source\PSoC4/start_pulse.c **** 
+ 745:Generated_Source\PSoC4/start_pulse.c **** 
+ 746:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 747:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_WriteControlRegister
+ 748:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 749:Generated_Source\PSoC4/start_pulse.c ****     *
+ 750:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 751:Generated_Source\PSoC4/start_pulse.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:Generated_Source\PSoC4/start_pulse.c ****     *  the control register is not removed.
+ 753:Generated_Source\PSoC4/start_pulse.c ****     *
+ 754:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 755:Generated_Source\PSoC4/start_pulse.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:Generated_Source\PSoC4/start_pulse.c ****     *  [7]   : PWM Enable
+ 757:Generated_Source\PSoC4/start_pulse.c ****     *  [6]   : Reset
+ 758:Generated_Source\PSoC4/start_pulse.c ****     *  [5:3] : Compare Mode2
+ 759:Generated_Source\PSoC4/start_pulse.c ****     *  [2:0] : Compare Mode2
+ 760:Generated_Source\PSoC4/start_pulse.c ****     *
+ 761:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 762:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 763:Generated_Source\PSoC4/start_pulse.c ****     *
+ 764:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 765:Generated_Source\PSoC4/start_pulse.c ****     void start_pulse_WriteControlRegister(uint8 control) 
+ 766:Generated_Source\PSoC4/start_pulse.c ****     {
+ 767:Generated_Source\PSoC4/start_pulse.c ****         CY_SET_REG8(start_pulse_CONTROL_PTR, control);
+ 768:Generated_Source\PSoC4/start_pulse.c ****     }
+ 769:Generated_Source\PSoC4/start_pulse.c **** 
+ 770:Generated_Source\PSoC4/start_pulse.c **** #endif /* (start_pulse_UseControl) */
+ 771:Generated_Source\PSoC4/start_pulse.c **** 
+ 772:Generated_Source\PSoC4/start_pulse.c **** 
+ 773:Generated_Source\PSoC4/start_pulse.c **** #if (!start_pulse_UsingFixedFunction)
+ 774:Generated_Source\PSoC4/start_pulse.c **** 
+ 775:Generated_Source\PSoC4/start_pulse.c **** 
+ 776:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 777:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadCapture
+ 778:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 779:Generated_Source\PSoC4/start_pulse.c ****     *
+ 780:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 781:Generated_Source\PSoC4/start_pulse.c ****     *  Reads the capture value from the capture FIFO.
+ 782:Generated_Source\PSoC4/start_pulse.c ****     *
+ 783:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 784:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 785:Generated_Source\PSoC4/start_pulse.c ****     *
+ 786:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 787:Generated_Source\PSoC4/start_pulse.c ****     *  uint8/uint16: The current capture value
+ 788:Generated_Source\PSoC4/start_pulse.c ****     *
+ 789:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 790:Generated_Source\PSoC4/start_pulse.c ****     uint16 start_pulse_ReadCapture(void) 
+ 791:Generated_Source\PSoC4/start_pulse.c ****     {
+ 232              		.loc 1 791 0
+ 233              		.cfi_startproc
+ 234              		@ args = 0, pretend = 0, frame = 0
+ 235              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 19
+
+
+ 236              		@ link register save eliminated.
+ 792:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG16(start_pulse_CAPTURE_LSB_PTR));
+ 237              		.loc 1 792 0
+ 238 0000 014B     		ldr	r3, .L22
+ 239 0002 1888     		ldrh	r0, [r3]
+ 240 0004 80B2     		uxth	r0, r0
+ 793:Generated_Source\PSoC4/start_pulse.c ****     }
+ 241              		.loc 1 793 0
+ 242              		@ sp needed
+ 243 0006 7047     		bx	lr
+ 244              	.L23:
+ 245              		.align	2
+ 246              	.L22:
+ 247 0008 A0100F40 		.word	1074729120
+ 248              		.cfi_endproc
+ 249              	.LFE11:
+ 250              		.size	start_pulse_ReadCapture, .-start_pulse_ReadCapture
+ 251              		.section	.text.start_pulse_ClearFIFO,"ax",%progbits
+ 252              		.align	2
+ 253              		.global	start_pulse_ClearFIFO
+ 254              		.code	16
+ 255              		.thumb_func
+ 256              		.type	start_pulse_ClearFIFO, %function
+ 257              	start_pulse_ClearFIFO:
+ 258              	.LFB6:
+ 454:Generated_Source\PSoC4/start_pulse.c ****             while(0u != (start_pulse_ReadStatusRegister() & start_pulse_STATUS_FIFONEMPTY))
+ 259              		.loc 1 454 0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263 0000 10B5     		push	{r4, lr}
+ 264              		.cfi_def_cfa_offset 8
+ 265              		.cfi_offset 4, -8
+ 266              		.cfi_offset 14, -4
+ 455:Generated_Source\PSoC4/start_pulse.c ****             {
+ 267              		.loc 1 455 0
+ 268 0002 01E0     		b	.L25
+ 269              	.L26:
+ 457:Generated_Source\PSoC4/start_pulse.c ****             }
+ 270              		.loc 1 457 0
+ 271 0004 FFF7FEFF 		bl	start_pulse_ReadCapture
+ 272              	.LVL4:
+ 273              	.L25:
+ 455:Generated_Source\PSoC4/start_pulse.c ****             {
+ 274              		.loc 1 455 0
+ 275 0008 FFF7FEFF 		bl	start_pulse_ReadStatusRegister
+ 276              	.LVL5:
+ 277 000c C306     		lsls	r3, r0, #27
+ 278 000e F9D4     		bmi	.L26
+ 459:Generated_Source\PSoC4/start_pulse.c **** 
+ 279              		.loc 1 459 0
+ 280              		@ sp needed
+ 281 0010 10BD     		pop	{r4, pc}
+ 282              		.cfi_endproc
+ 283              	.LFE6:
+ 284              		.size	start_pulse_ClearFIFO, .-start_pulse_ClearFIFO
+ 285 0012 C046     		.section	.text.start_pulse_Init,"ax",%progbits
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 20
+
+
+ 286              		.align	2
+ 287              		.global	start_pulse_Init
+ 288              		.code	16
+ 289              		.thumb_func
+ 290              		.type	start_pulse_Init, %function
+ 291              	start_pulse_Init:
+ 292              	.LFB1:
+  85:Generated_Source\PSoC4/start_pulse.c ****     #if (start_pulse_UsingFixedFunction || start_pulse_UseControl)
+ 293              		.loc 1 85 0
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 297 0000 70B5     		push	{r4, r5, r6, lr}
+ 298              		.cfi_def_cfa_offset 16
+ 299              		.cfi_offset 4, -16
+ 300              		.cfi_offset 5, -12
+ 301              		.cfi_offset 6, -8
+ 302              		.cfi_offset 14, -4
+ 129:Generated_Source\PSoC4/start_pulse.c ****             start_pulse_AUX_CONTROLDP1 |= (start_pulse_AUX_CTRL_FIFO0_CLR);
+ 303              		.loc 1 129 0
+ 304 0002 1249     		ldr	r1, .L28
+ 305 0004 0A78     		ldrb	r2, [r1]
+ 306 0006 0123     		movs	r3, #1
+ 307 0008 1A43     		orrs	r2, r3
+ 308 000a D2B2     		uxtb	r2, r2
+ 309 000c 0A70     		strb	r2, [r1]
+ 130:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_Resolution == 8) */
+ 310              		.loc 1 130 0
+ 311 000e 104C     		ldr	r4, .L28+4
+ 312 0010 2278     		ldrb	r2, [r4]
+ 313 0012 1343     		orrs	r3, r2
+ 314 0014 DBB2     		uxtb	r3, r3
+ 315 0016 2370     		strb	r3, [r4]
+ 133:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (!start_pulse_UsingFixedFunction) */
+ 316              		.loc 1 133 0
+ 317 0018 0E4D     		ldr	r5, .L28+8
+ 318 001a 2800     		movs	r0, r5
+ 319 001c FFF7FEFF 		bl	start_pulse_WriteCounter
+ 320              	.LVL6:
+ 136:Generated_Source\PSoC4/start_pulse.c **** 
+ 321              		.loc 1 136 0
+ 322 0020 2800     		movs	r0, r5
+ 323 0022 FFF7FEFF 		bl	start_pulse_WritePeriod
+ 324              	.LVL7:
+ 139:Generated_Source\PSoC4/start_pulse.c ****         #else
+ 325              		.loc 1 139 0
+ 326 0026 0C48     		ldr	r0, .L28+12
+ 327 0028 FFF7FEFF 		bl	start_pulse_WriteCompare
+ 328              	.LVL8:
+ 154:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UseStatus || start_pulse_UsingFixedFunction) */
+ 329              		.loc 1 154 0
+ 330 002c 0020     		movs	r0, #0
+ 331 002e FFF7FEFF 		bl	start_pulse_SetInterruptMode
+ 332              	.LVL9:
+ 167:Generated_Source\PSoC4/start_pulse.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 333              		.loc 1 167 0
+ 334 0032 FFF7FEFF 		bl	CyEnterCriticalSection
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 21
+
+
+ 335              	.LVL10:
+ 169:Generated_Source\PSoC4/start_pulse.c **** 
+ 336              		.loc 1 169 0
+ 337 0036 2278     		ldrb	r2, [r4]
+ 338 0038 1023     		movs	r3, #16
+ 339 003a 1343     		orrs	r3, r2
+ 340 003c DBB2     		uxtb	r3, r3
+ 341 003e 2370     		strb	r3, [r4]
+ 172:Generated_Source\PSoC4/start_pulse.c **** 
+ 342              		.loc 1 172 0
+ 343 0040 FFF7FEFF 		bl	CyExitCriticalSection
+ 344              	.LVL11:
+ 176:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UseStatus) */
+ 345              		.loc 1 176 0
+ 346 0044 FFF7FEFF 		bl	start_pulse_ClearFIFO
+ 347              	.LVL12:
+ 179:Generated_Source\PSoC4/start_pulse.c **** 
+ 348              		.loc 1 179 0
+ 349              		@ sp needed
+ 350 0048 70BD     		pop	{r4, r5, r6, pc}
+ 351              	.L29:
+ 352 004a C046     		.align	2
+ 353              	.L28:
+ 354 004c 90000F40 		.word	1074725008
+ 355 0050 91000F40 		.word	1074725009
+ 356 0054 FFFF0000 		.word	65535
+ 357 0058 AF3C0000 		.word	15535
+ 358              		.cfi_endproc
+ 359              	.LFE1:
+ 360              		.size	start_pulse_Init, .-start_pulse_Init
+ 361              		.section	.text.start_pulse_Start,"ax",%progbits
+ 362              		.align	2
+ 363              		.global	start_pulse_Start
+ 364              		.code	16
+ 365              		.thumb_func
+ 366              		.type	start_pulse_Start, %function
+ 367              	start_pulse_Start:
+ 368              	.LFB0:
+  56:Generated_Source\PSoC4/start_pulse.c ****     /* If not Initialized then initialize all required hardware and software */
+ 369              		.loc 1 56 0
+ 370              		.cfi_startproc
+ 371              		@ args = 0, pretend = 0, frame = 0
+ 372              		@ frame_needed = 0, uses_anonymous_args = 0
+ 373 0000 10B5     		push	{r4, lr}
+ 374              		.cfi_def_cfa_offset 8
+ 375              		.cfi_offset 4, -8
+ 376              		.cfi_offset 14, -4
+  58:Generated_Source\PSoC4/start_pulse.c ****     {
+ 377              		.loc 1 58 0
+ 378 0002 054B     		ldr	r3, .L32
+ 379 0004 1B78     		ldrb	r3, [r3]
+ 380 0006 002B     		cmp	r3, #0
+ 381 0008 04D1     		bne	.L30
+  60:Generated_Source\PSoC4/start_pulse.c ****         start_pulse_initVar = 1u;
+ 382              		.loc 1 60 0
+ 383 000a FFF7FEFF 		bl	start_pulse_Init
+ 384              	.LVL13:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 22
+
+
+  61:Generated_Source\PSoC4/start_pulse.c ****     }
+ 385              		.loc 1 61 0
+ 386 000e 0122     		movs	r2, #1
+ 387 0010 014B     		ldr	r3, .L32
+ 388 0012 1A70     		strb	r2, [r3]
+ 389              	.L30:
+  65:Generated_Source\PSoC4/start_pulse.c **** 
+ 390              		.loc 1 65 0
+ 391              		@ sp needed
+ 392 0014 10BD     		pop	{r4, pc}
+ 393              	.L33:
+ 394 0016 C046     		.align	2
+ 395              	.L32:
+ 396 0018 00000000 		.word	.LANCHOR0
+ 397              		.cfi_endproc
+ 398              	.LFE0:
+ 399              		.size	start_pulse_Start, .-start_pulse_Start
+ 400              		.section	.text.start_pulse_ReadCompare,"ax",%progbits
+ 401              		.align	2
+ 402              		.global	start_pulse_ReadCompare
+ 403              		.code	16
+ 404              		.thumb_func
+ 405              		.type	start_pulse_ReadCompare, %function
+ 406              	start_pulse_ReadCompare:
+ 407              	.LFB12:
+ 794:Generated_Source\PSoC4/start_pulse.c **** 
+ 795:Generated_Source\PSoC4/start_pulse.c **** #endif /* (!start_pulse_UsingFixedFunction) */
+ 796:Generated_Source\PSoC4/start_pulse.c **** 
+ 797:Generated_Source\PSoC4/start_pulse.c **** 
+ 798:Generated_Source\PSoC4/start_pulse.c **** #if (start_pulse_UseOneCompareMode)
+ 799:Generated_Source\PSoC4/start_pulse.c **** 
+ 800:Generated_Source\PSoC4/start_pulse.c **** 
+ 801:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 802:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadCompare
+ 803:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 804:Generated_Source\PSoC4/start_pulse.c ****     *
+ 805:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 806:Generated_Source\PSoC4/start_pulse.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:Generated_Source\PSoC4/start_pulse.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:Generated_Source\PSoC4/start_pulse.c ****     *
+ 809:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 810:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 811:Generated_Source\PSoC4/start_pulse.c ****     *
+ 812:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 813:Generated_Source\PSoC4/start_pulse.c ****     *  uint8/uint16: Current compare value
+ 814:Generated_Source\PSoC4/start_pulse.c ****     *
+ 815:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 816:Generated_Source\PSoC4/start_pulse.c ****     uint16 start_pulse_ReadCompare(void) 
+ 817:Generated_Source\PSoC4/start_pulse.c ****     {
+ 408              		.loc 1 817 0
+ 409              		.cfi_startproc
+ 410              		@ args = 0, pretend = 0, frame = 0
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 412              		@ link register save eliminated.
+ 818:Generated_Source\PSoC4/start_pulse.c ****         #if(start_pulse_UsingFixedFunction)
+ 819:Generated_Source\PSoC4/start_pulse.c ****             return ((uint16)CY_GET_REG16(start_pulse_COMPARE1_LSB_PTR));
+ 820:Generated_Source\PSoC4/start_pulse.c ****         #else
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 23
+
+
+ 821:Generated_Source\PSoC4/start_pulse.c ****             return (CY_GET_REG16(start_pulse_COMPARE1_LSB_PTR));
+ 413              		.loc 1 821 0
+ 414 0000 014B     		ldr	r3, .L35
+ 415 0002 1888     		ldrh	r0, [r3]
+ 416 0004 80B2     		uxth	r0, r0
+ 822:Generated_Source\PSoC4/start_pulse.c ****         #endif /* (start_pulse_UsingFixedFunction) */
+ 823:Generated_Source\PSoC4/start_pulse.c ****     }
+ 417              		.loc 1 823 0
+ 418              		@ sp needed
+ 419 0006 7047     		bx	lr
+ 420              	.L36:
+ 421              		.align	2
+ 422              	.L35:
+ 423 0008 40100F40 		.word	1074729024
+ 424              		.cfi_endproc
+ 425              	.LFE12:
+ 426              		.size	start_pulse_ReadCompare, .-start_pulse_ReadCompare
+ 427              		.section	.text.start_pulse_ReadPeriod,"ax",%progbits
+ 428              		.align	2
+ 429              		.global	start_pulse_ReadPeriod
+ 430              		.code	16
+ 431              		.thumb_func
+ 432              		.type	start_pulse_ReadPeriod, %function
+ 433              	start_pulse_ReadPeriod:
+ 434              	.LFB13:
+ 824:Generated_Source\PSoC4/start_pulse.c **** 
+ 825:Generated_Source\PSoC4/start_pulse.c **** #else
+ 826:Generated_Source\PSoC4/start_pulse.c **** 
+ 827:Generated_Source\PSoC4/start_pulse.c **** 
+ 828:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 829:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadCompare1
+ 830:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 831:Generated_Source\PSoC4/start_pulse.c ****     *
+ 832:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 833:Generated_Source\PSoC4/start_pulse.c ****     *  Reads the compare value for the compare1 output.
+ 834:Generated_Source\PSoC4/start_pulse.c ****     *
+ 835:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ 836:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 837:Generated_Source\PSoC4/start_pulse.c ****     *
+ 838:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 839:Generated_Source\PSoC4/start_pulse.c ****     *  uint8/uint16: Current compare value.
+ 840:Generated_Source\PSoC4/start_pulse.c ****     *
+ 841:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 842:Generated_Source\PSoC4/start_pulse.c ****     uint16 start_pulse_ReadCompare1(void) 
+ 843:Generated_Source\PSoC4/start_pulse.c ****     {
+ 844:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG16(start_pulse_COMPARE1_LSB_PTR));
+ 845:Generated_Source\PSoC4/start_pulse.c ****     }
+ 846:Generated_Source\PSoC4/start_pulse.c **** 
+ 847:Generated_Source\PSoC4/start_pulse.c **** 
+ 848:Generated_Source\PSoC4/start_pulse.c ****     /*******************************************************************************
+ 849:Generated_Source\PSoC4/start_pulse.c ****     * Function Name: start_pulse_ReadCompare2
+ 850:Generated_Source\PSoC4/start_pulse.c ****     ********************************************************************************
+ 851:Generated_Source\PSoC4/start_pulse.c ****     *
+ 852:Generated_Source\PSoC4/start_pulse.c ****     * Summary:
+ 853:Generated_Source\PSoC4/start_pulse.c ****     *  Reads the compare value for the compare2 output.
+ 854:Generated_Source\PSoC4/start_pulse.c ****     *
+ 855:Generated_Source\PSoC4/start_pulse.c ****     * Parameters:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 24
+
+
+ 856:Generated_Source\PSoC4/start_pulse.c ****     *  None
+ 857:Generated_Source\PSoC4/start_pulse.c ****     *
+ 858:Generated_Source\PSoC4/start_pulse.c ****     * Return:
+ 859:Generated_Source\PSoC4/start_pulse.c ****     *  uint8/uint16: Current compare value.
+ 860:Generated_Source\PSoC4/start_pulse.c ****     *
+ 861:Generated_Source\PSoC4/start_pulse.c ****     *******************************************************************************/
+ 862:Generated_Source\PSoC4/start_pulse.c ****     uint16 start_pulse_ReadCompare2(void) 
+ 863:Generated_Source\PSoC4/start_pulse.c ****     {
+ 864:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG16(start_pulse_COMPARE2_LSB_PTR));
+ 865:Generated_Source\PSoC4/start_pulse.c ****     }
+ 866:Generated_Source\PSoC4/start_pulse.c **** 
+ 867:Generated_Source\PSoC4/start_pulse.c **** #endif /* (start_pulse_UseOneCompareMode) */
+ 868:Generated_Source\PSoC4/start_pulse.c **** 
+ 869:Generated_Source\PSoC4/start_pulse.c **** 
+ 870:Generated_Source\PSoC4/start_pulse.c **** /*******************************************************************************
+ 871:Generated_Source\PSoC4/start_pulse.c **** * Function Name: start_pulse_ReadPeriod
+ 872:Generated_Source\PSoC4/start_pulse.c **** ********************************************************************************
+ 873:Generated_Source\PSoC4/start_pulse.c **** *
+ 874:Generated_Source\PSoC4/start_pulse.c **** * Summary:
+ 875:Generated_Source\PSoC4/start_pulse.c **** *  Reads the period value used by the PWM hardware.
+ 876:Generated_Source\PSoC4/start_pulse.c **** *
+ 877:Generated_Source\PSoC4/start_pulse.c **** * Parameters:
+ 878:Generated_Source\PSoC4/start_pulse.c **** *  None
+ 879:Generated_Source\PSoC4/start_pulse.c **** *
+ 880:Generated_Source\PSoC4/start_pulse.c **** * Return:
+ 881:Generated_Source\PSoC4/start_pulse.c **** *  uint8/16: Period value
+ 882:Generated_Source\PSoC4/start_pulse.c **** *
+ 883:Generated_Source\PSoC4/start_pulse.c **** *******************************************************************************/
+ 884:Generated_Source\PSoC4/start_pulse.c **** uint16 start_pulse_ReadPeriod(void) 
+ 885:Generated_Source\PSoC4/start_pulse.c **** {
+ 435              		.loc 1 885 0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 0
+ 438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 439              		@ link register save eliminated.
+ 886:Generated_Source\PSoC4/start_pulse.c ****     #if(start_pulse_UsingFixedFunction)
+ 887:Generated_Source\PSoC4/start_pulse.c ****         return ((uint16)CY_GET_REG16(start_pulse_PERIOD_LSB_PTR));
+ 888:Generated_Source\PSoC4/start_pulse.c ****     #else
+ 889:Generated_Source\PSoC4/start_pulse.c ****         return (CY_GET_REG16(start_pulse_PERIOD_LSB_PTR));
+ 440              		.loc 1 889 0
+ 441 0000 014B     		ldr	r3, .L38
+ 442 0002 1888     		ldrh	r0, [r3]
+ 443 0004 80B2     		uxth	r0, r0
+ 890:Generated_Source\PSoC4/start_pulse.c ****     #endif /* (start_pulse_UsingFixedFunction) */
+ 891:Generated_Source\PSoC4/start_pulse.c **** }
+ 444              		.loc 1 891 0
+ 445              		@ sp needed
+ 446 0006 7047     		bx	lr
+ 447              	.L39:
+ 448              		.align	2
+ 449              	.L38:
+ 450 0008 80100F40 		.word	1074729088
+ 451              		.cfi_endproc
+ 452              	.LFE13:
+ 453              		.size	start_pulse_ReadPeriod, .-start_pulse_ReadPeriod
+ 454              		.global	start_pulse_initVar
+ 455              		.bss
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 25
+
+
+ 456              		.set	.LANCHOR0,. + 0
+ 457              		.type	start_pulse_initVar, %object
+ 458              		.size	start_pulse_initVar, 1
+ 459              	start_pulse_initVar:
+ 460 0000 00       		.space	1
+ 461              		.text
+ 462              	.Letext0:
+ 463              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 464              		.file 3 "Generated_Source\\PSoC4\\CyLib.h"
+ 465              		.section	.debug_info,"",%progbits
+ 466              	.Ldebug_info0:
+ 467 0000 E8020000 		.4byte	0x2e8
+ 468 0004 0400     		.2byte	0x4
+ 469 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 470 000a 04       		.byte	0x4
+ 471 000b 01       		.uleb128 0x1
+ 472 000c EE010000 		.4byte	.LASF38
+ 473 0010 0C       		.byte	0xc
+ 474 0011 34000000 		.4byte	.LASF39
+ 475 0015 06000000 		.4byte	.LASF40
+ 476 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 477 001d 00000000 		.4byte	0
+ 478 0021 00000000 		.4byte	.Ldebug_line0
+ 479 0025 02       		.uleb128 0x2
+ 480 0026 01       		.byte	0x1
+ 481 0027 06       		.byte	0x6
+ 482 0028 27030000 		.4byte	.LASF0
+ 483 002c 02       		.uleb128 0x2
+ 484 002d 01       		.byte	0x1
+ 485 002e 08       		.byte	0x8
+ 486 002f 59010000 		.4byte	.LASF1
+ 487 0033 02       		.uleb128 0x2
+ 488 0034 02       		.byte	0x2
+ 489 0035 05       		.byte	0x5
+ 490 0036 F4020000 		.4byte	.LASF2
+ 491 003a 02       		.uleb128 0x2
+ 492 003b 02       		.byte	0x2
+ 493 003c 07       		.byte	0x7
+ 494 003d 95000000 		.4byte	.LASF3
+ 495 0041 02       		.uleb128 0x2
+ 496 0042 04       		.byte	0x4
+ 497 0043 05       		.byte	0x5
+ 498 0044 FE020000 		.4byte	.LASF4
+ 499 0048 02       		.uleb128 0x2
+ 500 0049 04       		.byte	0x4
+ 501 004a 07       		.byte	0x7
+ 502 004b 41010000 		.4byte	.LASF5
+ 503 004f 02       		.uleb128 0x2
+ 504 0050 08       		.byte	0x8
+ 505 0051 05       		.byte	0x5
+ 506 0052 AE020000 		.4byte	.LASF6
+ 507 0056 02       		.uleb128 0x2
+ 508 0057 08       		.byte	0x8
+ 509 0058 07       		.byte	0x7
+ 510 0059 CE000000 		.4byte	.LASF7
+ 511 005d 03       		.uleb128 0x3
+ 512 005e 04       		.byte	0x4
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 26
+
+
+ 513 005f 05       		.byte	0x5
+ 514 0060 696E7400 		.ascii	"int\000"
+ 515 0064 02       		.uleb128 0x2
+ 516 0065 04       		.byte	0x4
+ 517 0066 07       		.byte	0x7
+ 518 0067 B7010000 		.4byte	.LASF8
+ 519 006b 04       		.uleb128 0x4
+ 520 006c 53010000 		.4byte	.LASF9
+ 521 0070 02       		.byte	0x2
+ 522 0071 E401     		.2byte	0x1e4
+ 523 0073 2C000000 		.4byte	0x2c
+ 524 0077 04       		.uleb128 0x4
+ 525 0078 7A010000 		.4byte	.LASF10
+ 526 007c 02       		.byte	0x2
+ 527 007d E501     		.2byte	0x1e5
+ 528 007f 3A000000 		.4byte	0x3a
+ 529 0083 02       		.uleb128 0x2
+ 530 0084 04       		.byte	0x4
+ 531 0085 04       		.byte	0x4
+ 532 0086 C0000000 		.4byte	.LASF11
+ 533 008a 02       		.uleb128 0x2
+ 534 008b 08       		.byte	0x8
+ 535 008c 04       		.byte	0x4
+ 536 008d 67010000 		.4byte	.LASF12
+ 537 0091 02       		.uleb128 0x2
+ 538 0092 01       		.byte	0x1
+ 539 0093 08       		.byte	0x8
+ 540 0094 07030000 		.4byte	.LASF13
+ 541 0098 04       		.uleb128 0x4
+ 542 0099 14010000 		.4byte	.LASF14
+ 543 009d 02       		.byte	0x2
+ 544 009e 8E02     		.2byte	0x28e
+ 545 00a0 A4000000 		.4byte	0xa4
+ 546 00a4 05       		.uleb128 0x5
+ 547 00a5 6B000000 		.4byte	0x6b
+ 548 00a9 04       		.uleb128 0x4
+ 549 00aa 00000000 		.4byte	.LASF15
+ 550 00ae 02       		.byte	0x2
+ 551 00af 8F02     		.2byte	0x28f
+ 552 00b1 B5000000 		.4byte	0xb5
+ 553 00b5 05       		.uleb128 0x5
+ 554 00b6 77000000 		.4byte	0x77
+ 555 00ba 02       		.uleb128 0x2
+ 556 00bb 08       		.byte	0x8
+ 557 00bc 04       		.byte	0x4
+ 558 00bd 6E010000 		.4byte	.LASF16
+ 559 00c1 02       		.uleb128 0x2
+ 560 00c2 04       		.byte	0x4
+ 561 00c3 07       		.byte	0x7
+ 562 00c4 A5020000 		.4byte	.LASF17
+ 563 00c8 06       		.uleb128 0x6
+ 564 00c9 54030000 		.4byte	.LASF18
+ 565 00cd 01       		.byte	0x1
+ 566 00ce C7       		.byte	0xc7
+ 567 00cf 00000000 		.4byte	.LFB2
+ 568 00d3 02000000 		.4byte	.LFE2-.LFB2
+ 569 00d7 01       		.uleb128 0x1
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 27
+
+
+ 570 00d8 9C       		.byte	0x9c
+ 571 00d9 06       		.uleb128 0x6
+ 572 00da 7C020000 		.4byte	.LASF19
+ 573 00de 01       		.byte	0x1
+ 574 00df E9       		.byte	0xe9
+ 575 00e0 00000000 		.4byte	.LFB3
+ 576 00e4 02000000 		.4byte	.LFE3-.LFB3
+ 577 00e8 01       		.uleb128 0x1
+ 578 00e9 9C       		.byte	0x9c
+ 579 00ea 07       		.uleb128 0x7
+ 580 00eb FB000000 		.4byte	.LASF20
+ 581 00ef 01       		.byte	0x1
+ 582 00f0 9301     		.2byte	0x193
+ 583 00f2 00000000 		.4byte	.LFB4
+ 584 00f6 0C000000 		.4byte	.LFE4-.LFB4
+ 585 00fa 01       		.uleb128 0x1
+ 586 00fb 9C       		.byte	0x9c
+ 587 00fc 0F010000 		.4byte	0x10f
+ 588 0100 08       		.uleb128 0x8
+ 589 0101 C6000000 		.4byte	.LASF22
+ 590 0105 01       		.byte	0x1
+ 591 0106 9301     		.2byte	0x193
+ 592 0108 77000000 		.4byte	0x77
+ 593 010c 01       		.uleb128 0x1
+ 594 010d 50       		.byte	0x50
+ 595 010e 00       		.byte	0
+ 596 010f 09       		.uleb128 0x9
+ 597 0110 59000000 		.4byte	.LASF28
+ 598 0114 01       		.byte	0x1
+ 599 0115 A901     		.2byte	0x1a9
+ 600 0117 77000000 		.4byte	0x77
+ 601 011b 00000000 		.4byte	.LFB5
+ 602 011f 14000000 		.4byte	.LFE5-.LFB5
+ 603 0123 01       		.uleb128 0x1
+ 604 0124 9C       		.byte	0x9c
+ 605 0125 07       		.uleb128 0x7
+ 606 0126 A8000000 		.4byte	.LASF21
+ 607 012a 01       		.byte	0x1
+ 608 012b E201     		.2byte	0x1e2
+ 609 012d 00000000 		.4byte	.LFB7
+ 610 0131 0C000000 		.4byte	.LFE7-.LFB7
+ 611 0135 01       		.uleb128 0x1
+ 612 0136 9C       		.byte	0x9c
+ 613 0137 4A010000 		.4byte	0x14a
+ 614 013b 08       		.uleb128 0x8
+ 615 013c 8E000000 		.4byte	.LASF23
+ 616 0140 01       		.byte	0x1
+ 617 0141 E201     		.2byte	0x1e2
+ 618 0143 77000000 		.4byte	0x77
+ 619 0147 01       		.uleb128 0x1
+ 620 0148 50       		.byte	0x50
+ 621 0149 00       		.byte	0
+ 622 014a 07       		.uleb128 0x7
+ 623 014b 3B030000 		.4byte	.LASF24
+ 624 014f 01       		.byte	0x1
+ 625 0150 0402     		.2byte	0x204
+ 626 0152 00000000 		.4byte	.LFB8
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 28
+
+
+ 627 0156 0C000000 		.4byte	.LFE8-.LFB8
+ 628 015a 01       		.uleb128 0x1
+ 629 015b 9C       		.byte	0x9c
+ 630 015c 6F010000 		.4byte	0x16f
+ 631 0160 08       		.uleb128 0x8
+ 632 0161 33030000 		.4byte	.LASF25
+ 633 0165 01       		.byte	0x1
+ 634 0166 0402     		.2byte	0x204
+ 635 0168 77000000 		.4byte	0x77
+ 636 016c 01       		.uleb128 0x1
+ 637 016d 50       		.byte	0x50
+ 638 016e 00       		.byte	0
+ 639 016f 07       		.uleb128 0x7
+ 640 0170 71000000 		.4byte	.LASF26
+ 641 0174 01       		.byte	0x1
+ 642 0175 AC02     		.2byte	0x2ac
+ 643 0177 00000000 		.4byte	.LFB9
+ 644 017b 0C000000 		.4byte	.LFE9-.LFB9
+ 645 017f 01       		.uleb128 0x1
+ 646 0180 9C       		.byte	0x9c
+ 647 0181 94010000 		.4byte	0x194
+ 648 0185 08       		.uleb128 0x8
+ 649 0186 CE020000 		.4byte	.LASF27
+ 650 018a 01       		.byte	0x1
+ 651 018b AC02     		.2byte	0x2ac
+ 652 018d 6B000000 		.4byte	0x6b
+ 653 0191 01       		.uleb128 0x1
+ 654 0192 50       		.byte	0x50
+ 655 0193 00       		.byte	0
+ 656 0194 09       		.uleb128 0x9
+ 657 0195 81010000 		.4byte	.LASF29
+ 658 0199 01       		.byte	0x1
+ 659 019a C702     		.2byte	0x2c7
+ 660 019c 6B000000 		.4byte	0x6b
+ 661 01a0 00000000 		.4byte	.LFB10
+ 662 01a4 0C000000 		.4byte	.LFE10-.LFB10
+ 663 01a8 01       		.uleb128 0x1
+ 664 01a9 9C       		.byte	0x9c
+ 665 01aa 09       		.uleb128 0x9
+ 666 01ab DC020000 		.4byte	.LASF30
+ 667 01af 01       		.byte	0x1
+ 668 01b0 1603     		.2byte	0x316
+ 669 01b2 77000000 		.4byte	0x77
+ 670 01b6 00000000 		.4byte	.LFB11
+ 671 01ba 0C000000 		.4byte	.LFE11-.LFB11
+ 672 01be 01       		.uleb128 0x1
+ 673 01bf 9C       		.byte	0x9c
+ 674 01c0 07       		.uleb128 0x7
+ 675 01c1 E5000000 		.4byte	.LASF31
+ 676 01c5 01       		.byte	0x1
+ 677 01c6 C501     		.2byte	0x1c5
+ 678 01c8 00000000 		.4byte	.LFB6
+ 679 01cc 12000000 		.4byte	.LFE6-.LFB6
+ 680 01d0 01       		.uleb128 0x1
+ 681 01d1 9C       		.byte	0x9c
+ 682 01d2 E9010000 		.4byte	0x1e9
+ 683 01d6 0A       		.uleb128 0xa
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 29
+
+
+ 684 01d7 08000000 		.4byte	.LVL4
+ 685 01db AA010000 		.4byte	0x1aa
+ 686 01df 0A       		.uleb128 0xa
+ 687 01e0 0C000000 		.4byte	.LVL5
+ 688 01e4 94010000 		.4byte	0x194
+ 689 01e8 00       		.byte	0
+ 690 01e9 0B       		.uleb128 0xb
+ 691 01ea 30010000 		.4byte	.LASF32
+ 692 01ee 01       		.byte	0x1
+ 693 01ef 54       		.byte	0x54
+ 694 01f0 00000000 		.4byte	.LFB1
+ 695 01f4 5C000000 		.4byte	.LFE1-.LFB1
+ 696 01f8 01       		.uleb128 0x1
+ 697 01f9 9C       		.byte	0x9c
+ 698 01fa 79020000 		.4byte	0x279
+ 699 01fe 0C       		.uleb128 0xc
+ 700 01ff 0C030000 		.4byte	.LASF41
+ 701 0203 01       		.byte	0x1
+ 702 0204 5D       		.byte	0x5d
+ 703 0205 6B000000 		.4byte	0x6b
+ 704 0209 00000000 		.4byte	.LLST0
+ 705 020d 0D       		.uleb128 0xd
+ 706 020e 20000000 		.4byte	.LVL6
+ 707 0212 EA000000 		.4byte	0xea
+ 708 0216 21020000 		.4byte	0x221
+ 709 021a 0E       		.uleb128 0xe
+ 710 021b 01       		.uleb128 0x1
+ 711 021c 50       		.byte	0x50
+ 712 021d 02       		.uleb128 0x2
+ 713 021e 75       		.byte	0x75
+ 714 021f 00       		.sleb128 0
+ 715 0220 00       		.byte	0
+ 716 0221 0D       		.uleb128 0xd
+ 717 0222 26000000 		.4byte	.LVL7
+ 718 0226 25010000 		.4byte	0x125
+ 719 022a 35020000 		.4byte	0x235
+ 720 022e 0E       		.uleb128 0xe
+ 721 022f 01       		.uleb128 0x1
+ 722 0230 50       		.byte	0x50
+ 723 0231 02       		.uleb128 0x2
+ 724 0232 75       		.byte	0x75
+ 725 0233 00       		.sleb128 0
+ 726 0234 00       		.byte	0
+ 727 0235 0D       		.uleb128 0xd
+ 728 0236 2C000000 		.4byte	.LVL8
+ 729 023a 4A010000 		.4byte	0x14a
+ 730 023e 4A020000 		.4byte	0x24a
+ 731 0242 0E       		.uleb128 0xe
+ 732 0243 01       		.uleb128 0x1
+ 733 0244 50       		.byte	0x50
+ 734 0245 03       		.uleb128 0x3
+ 735 0246 0A       		.byte	0xa
+ 736 0247 AF3C     		.2byte	0x3caf
+ 737 0249 00       		.byte	0
+ 738 024a 0D       		.uleb128 0xd
+ 739 024b 32000000 		.4byte	.LVL9
+ 740 024f 6F010000 		.4byte	0x16f
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 30
+
+
+ 741 0253 5D020000 		.4byte	0x25d
+ 742 0257 0E       		.uleb128 0xe
+ 743 0258 01       		.uleb128 0x1
+ 744 0259 50       		.byte	0x50
+ 745 025a 01       		.uleb128 0x1
+ 746 025b 30       		.byte	0x30
+ 747 025c 00       		.byte	0
+ 748 025d 0A       		.uleb128 0xa
+ 749 025e 36000000 		.4byte	.LVL10
+ 750 0262 D5020000 		.4byte	0x2d5
+ 751 0266 0A       		.uleb128 0xa
+ 752 0267 44000000 		.4byte	.LVL11
+ 753 026b E0020000 		.4byte	0x2e0
+ 754 026f 0A       		.uleb128 0xa
+ 755 0270 48000000 		.4byte	.LVL12
+ 756 0274 C0010000 		.4byte	0x1c0
+ 757 0278 00       		.byte	0
+ 758 0279 0B       		.uleb128 0xb
+ 759 027a BC020000 		.4byte	.LASF33
+ 760 027e 01       		.byte	0x1
+ 761 027f 37       		.byte	0x37
+ 762 0280 00000000 		.4byte	.LFB0
+ 763 0284 1C000000 		.4byte	.LFE0-.LFB0
+ 764 0288 01       		.uleb128 0x1
+ 765 0289 9C       		.byte	0x9c
+ 766 028a 98020000 		.4byte	0x298
+ 767 028e 0A       		.uleb128 0xa
+ 768 028f 0E000000 		.4byte	.LVL13
+ 769 0293 E9010000 		.4byte	0x1e9
+ 770 0297 00       		.byte	0
+ 771 0298 09       		.uleb128 0x9
+ 772 0299 8D020000 		.4byte	.LASF34
+ 773 029d 01       		.byte	0x1
+ 774 029e 3003     		.2byte	0x330
+ 775 02a0 77000000 		.4byte	0x77
+ 776 02a4 00000000 		.4byte	.LFB12
+ 777 02a8 0C000000 		.4byte	.LFE12-.LFB12
+ 778 02ac 01       		.uleb128 0x1
+ 779 02ad 9C       		.byte	0x9c
+ 780 02ae 09       		.uleb128 0x9
+ 781 02af 19010000 		.4byte	.LASF35
+ 782 02b3 01       		.byte	0x1
+ 783 02b4 7403     		.2byte	0x374
+ 784 02b6 77000000 		.4byte	0x77
+ 785 02ba 00000000 		.4byte	.LFB13
+ 786 02be 0C000000 		.4byte	.LFE13-.LFB13
+ 787 02c2 01       		.uleb128 0x1
+ 788 02c3 9C       		.byte	0x9c
+ 789 02c4 0F       		.uleb128 0xf
+ 790 02c5 DA010000 		.4byte	.LASF42
+ 791 02c9 01       		.byte	0x1
+ 792 02ca 20       		.byte	0x20
+ 793 02cb 6B000000 		.4byte	0x6b
+ 794 02cf 05       		.uleb128 0x5
+ 795 02d0 03       		.byte	0x3
+ 796 02d1 00000000 		.4byte	start_pulse_initVar
+ 797 02d5 10       		.uleb128 0x10
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 31
+
+
+ 798 02d6 A0010000 		.4byte	.LASF36
+ 799 02da A0010000 		.4byte	.LASF36
+ 800 02de 03       		.byte	0x3
+ 801 02df E5       		.byte	0xe5
+ 802 02e0 10       		.uleb128 0x10
+ 803 02e1 C4010000 		.4byte	.LASF37
+ 804 02e5 C4010000 		.4byte	.LASF37
+ 805 02e9 03       		.byte	0x3
+ 806 02ea E6       		.byte	0xe6
+ 807 02eb 00       		.byte	0
+ 808              		.section	.debug_abbrev,"",%progbits
+ 809              	.Ldebug_abbrev0:
+ 810 0000 01       		.uleb128 0x1
+ 811 0001 11       		.uleb128 0x11
+ 812 0002 01       		.byte	0x1
+ 813 0003 25       		.uleb128 0x25
+ 814 0004 0E       		.uleb128 0xe
+ 815 0005 13       		.uleb128 0x13
+ 816 0006 0B       		.uleb128 0xb
+ 817 0007 03       		.uleb128 0x3
+ 818 0008 0E       		.uleb128 0xe
+ 819 0009 1B       		.uleb128 0x1b
+ 820 000a 0E       		.uleb128 0xe
+ 821 000b 55       		.uleb128 0x55
+ 822 000c 17       		.uleb128 0x17
+ 823 000d 11       		.uleb128 0x11
+ 824 000e 01       		.uleb128 0x1
+ 825 000f 10       		.uleb128 0x10
+ 826 0010 17       		.uleb128 0x17
+ 827 0011 00       		.byte	0
+ 828 0012 00       		.byte	0
+ 829 0013 02       		.uleb128 0x2
+ 830 0014 24       		.uleb128 0x24
+ 831 0015 00       		.byte	0
+ 832 0016 0B       		.uleb128 0xb
+ 833 0017 0B       		.uleb128 0xb
+ 834 0018 3E       		.uleb128 0x3e
+ 835 0019 0B       		.uleb128 0xb
+ 836 001a 03       		.uleb128 0x3
+ 837 001b 0E       		.uleb128 0xe
+ 838 001c 00       		.byte	0
+ 839 001d 00       		.byte	0
+ 840 001e 03       		.uleb128 0x3
+ 841 001f 24       		.uleb128 0x24
+ 842 0020 00       		.byte	0
+ 843 0021 0B       		.uleb128 0xb
+ 844 0022 0B       		.uleb128 0xb
+ 845 0023 3E       		.uleb128 0x3e
+ 846 0024 0B       		.uleb128 0xb
+ 847 0025 03       		.uleb128 0x3
+ 848 0026 08       		.uleb128 0x8
+ 849 0027 00       		.byte	0
+ 850 0028 00       		.byte	0
+ 851 0029 04       		.uleb128 0x4
+ 852 002a 16       		.uleb128 0x16
+ 853 002b 00       		.byte	0
+ 854 002c 03       		.uleb128 0x3
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 32
+
+
+ 855 002d 0E       		.uleb128 0xe
+ 856 002e 3A       		.uleb128 0x3a
+ 857 002f 0B       		.uleb128 0xb
+ 858 0030 3B       		.uleb128 0x3b
+ 859 0031 05       		.uleb128 0x5
+ 860 0032 49       		.uleb128 0x49
+ 861 0033 13       		.uleb128 0x13
+ 862 0034 00       		.byte	0
+ 863 0035 00       		.byte	0
+ 864 0036 05       		.uleb128 0x5
+ 865 0037 35       		.uleb128 0x35
+ 866 0038 00       		.byte	0
+ 867 0039 49       		.uleb128 0x49
+ 868 003a 13       		.uleb128 0x13
+ 869 003b 00       		.byte	0
+ 870 003c 00       		.byte	0
+ 871 003d 06       		.uleb128 0x6
+ 872 003e 2E       		.uleb128 0x2e
+ 873 003f 00       		.byte	0
+ 874 0040 3F       		.uleb128 0x3f
+ 875 0041 19       		.uleb128 0x19
+ 876 0042 03       		.uleb128 0x3
+ 877 0043 0E       		.uleb128 0xe
+ 878 0044 3A       		.uleb128 0x3a
+ 879 0045 0B       		.uleb128 0xb
+ 880 0046 3B       		.uleb128 0x3b
+ 881 0047 0B       		.uleb128 0xb
+ 882 0048 27       		.uleb128 0x27
+ 883 0049 19       		.uleb128 0x19
+ 884 004a 11       		.uleb128 0x11
+ 885 004b 01       		.uleb128 0x1
+ 886 004c 12       		.uleb128 0x12
+ 887 004d 06       		.uleb128 0x6
+ 888 004e 40       		.uleb128 0x40
+ 889 004f 18       		.uleb128 0x18
+ 890 0050 9742     		.uleb128 0x2117
+ 891 0052 19       		.uleb128 0x19
+ 892 0053 00       		.byte	0
+ 893 0054 00       		.byte	0
+ 894 0055 07       		.uleb128 0x7
+ 895 0056 2E       		.uleb128 0x2e
+ 896 0057 01       		.byte	0x1
+ 897 0058 3F       		.uleb128 0x3f
+ 898 0059 19       		.uleb128 0x19
+ 899 005a 03       		.uleb128 0x3
+ 900 005b 0E       		.uleb128 0xe
+ 901 005c 3A       		.uleb128 0x3a
+ 902 005d 0B       		.uleb128 0xb
+ 903 005e 3B       		.uleb128 0x3b
+ 904 005f 05       		.uleb128 0x5
+ 905 0060 27       		.uleb128 0x27
+ 906 0061 19       		.uleb128 0x19
+ 907 0062 11       		.uleb128 0x11
+ 908 0063 01       		.uleb128 0x1
+ 909 0064 12       		.uleb128 0x12
+ 910 0065 06       		.uleb128 0x6
+ 911 0066 40       		.uleb128 0x40
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 33
+
+
+ 912 0067 18       		.uleb128 0x18
+ 913 0068 9742     		.uleb128 0x2117
+ 914 006a 19       		.uleb128 0x19
+ 915 006b 01       		.uleb128 0x1
+ 916 006c 13       		.uleb128 0x13
+ 917 006d 00       		.byte	0
+ 918 006e 00       		.byte	0
+ 919 006f 08       		.uleb128 0x8
+ 920 0070 05       		.uleb128 0x5
+ 921 0071 00       		.byte	0
+ 922 0072 03       		.uleb128 0x3
+ 923 0073 0E       		.uleb128 0xe
+ 924 0074 3A       		.uleb128 0x3a
+ 925 0075 0B       		.uleb128 0xb
+ 926 0076 3B       		.uleb128 0x3b
+ 927 0077 05       		.uleb128 0x5
+ 928 0078 49       		.uleb128 0x49
+ 929 0079 13       		.uleb128 0x13
+ 930 007a 02       		.uleb128 0x2
+ 931 007b 18       		.uleb128 0x18
+ 932 007c 00       		.byte	0
+ 933 007d 00       		.byte	0
+ 934 007e 09       		.uleb128 0x9
+ 935 007f 2E       		.uleb128 0x2e
+ 936 0080 00       		.byte	0
+ 937 0081 3F       		.uleb128 0x3f
+ 938 0082 19       		.uleb128 0x19
+ 939 0083 03       		.uleb128 0x3
+ 940 0084 0E       		.uleb128 0xe
+ 941 0085 3A       		.uleb128 0x3a
+ 942 0086 0B       		.uleb128 0xb
+ 943 0087 3B       		.uleb128 0x3b
+ 944 0088 05       		.uleb128 0x5
+ 945 0089 27       		.uleb128 0x27
+ 946 008a 19       		.uleb128 0x19
+ 947 008b 49       		.uleb128 0x49
+ 948 008c 13       		.uleb128 0x13
+ 949 008d 11       		.uleb128 0x11
+ 950 008e 01       		.uleb128 0x1
+ 951 008f 12       		.uleb128 0x12
+ 952 0090 06       		.uleb128 0x6
+ 953 0091 40       		.uleb128 0x40
+ 954 0092 18       		.uleb128 0x18
+ 955 0093 9742     		.uleb128 0x2117
+ 956 0095 19       		.uleb128 0x19
+ 957 0096 00       		.byte	0
+ 958 0097 00       		.byte	0
+ 959 0098 0A       		.uleb128 0xa
+ 960 0099 898201   		.uleb128 0x4109
+ 961 009c 00       		.byte	0
+ 962 009d 11       		.uleb128 0x11
+ 963 009e 01       		.uleb128 0x1
+ 964 009f 31       		.uleb128 0x31
+ 965 00a0 13       		.uleb128 0x13
+ 966 00a1 00       		.byte	0
+ 967 00a2 00       		.byte	0
+ 968 00a3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 34
+
+
+ 969 00a4 2E       		.uleb128 0x2e
+ 970 00a5 01       		.byte	0x1
+ 971 00a6 3F       		.uleb128 0x3f
+ 972 00a7 19       		.uleb128 0x19
+ 973 00a8 03       		.uleb128 0x3
+ 974 00a9 0E       		.uleb128 0xe
+ 975 00aa 3A       		.uleb128 0x3a
+ 976 00ab 0B       		.uleb128 0xb
+ 977 00ac 3B       		.uleb128 0x3b
+ 978 00ad 0B       		.uleb128 0xb
+ 979 00ae 27       		.uleb128 0x27
+ 980 00af 19       		.uleb128 0x19
+ 981 00b0 11       		.uleb128 0x11
+ 982 00b1 01       		.uleb128 0x1
+ 983 00b2 12       		.uleb128 0x12
+ 984 00b3 06       		.uleb128 0x6
+ 985 00b4 40       		.uleb128 0x40
+ 986 00b5 18       		.uleb128 0x18
+ 987 00b6 9742     		.uleb128 0x2117
+ 988 00b8 19       		.uleb128 0x19
+ 989 00b9 01       		.uleb128 0x1
+ 990 00ba 13       		.uleb128 0x13
+ 991 00bb 00       		.byte	0
+ 992 00bc 00       		.byte	0
+ 993 00bd 0C       		.uleb128 0xc
+ 994 00be 34       		.uleb128 0x34
+ 995 00bf 00       		.byte	0
+ 996 00c0 03       		.uleb128 0x3
+ 997 00c1 0E       		.uleb128 0xe
+ 998 00c2 3A       		.uleb128 0x3a
+ 999 00c3 0B       		.uleb128 0xb
+ 1000 00c4 3B       		.uleb128 0x3b
+ 1001 00c5 0B       		.uleb128 0xb
+ 1002 00c6 49       		.uleb128 0x49
+ 1003 00c7 13       		.uleb128 0x13
+ 1004 00c8 02       		.uleb128 0x2
+ 1005 00c9 17       		.uleb128 0x17
+ 1006 00ca 00       		.byte	0
+ 1007 00cb 00       		.byte	0
+ 1008 00cc 0D       		.uleb128 0xd
+ 1009 00cd 898201   		.uleb128 0x4109
+ 1010 00d0 01       		.byte	0x1
+ 1011 00d1 11       		.uleb128 0x11
+ 1012 00d2 01       		.uleb128 0x1
+ 1013 00d3 31       		.uleb128 0x31
+ 1014 00d4 13       		.uleb128 0x13
+ 1015 00d5 01       		.uleb128 0x1
+ 1016 00d6 13       		.uleb128 0x13
+ 1017 00d7 00       		.byte	0
+ 1018 00d8 00       		.byte	0
+ 1019 00d9 0E       		.uleb128 0xe
+ 1020 00da 8A8201   		.uleb128 0x410a
+ 1021 00dd 00       		.byte	0
+ 1022 00de 02       		.uleb128 0x2
+ 1023 00df 18       		.uleb128 0x18
+ 1024 00e0 9142     		.uleb128 0x2111
+ 1025 00e2 18       		.uleb128 0x18
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 35
+
+
+ 1026 00e3 00       		.byte	0
+ 1027 00e4 00       		.byte	0
+ 1028 00e5 0F       		.uleb128 0xf
+ 1029 00e6 34       		.uleb128 0x34
+ 1030 00e7 00       		.byte	0
+ 1031 00e8 03       		.uleb128 0x3
+ 1032 00e9 0E       		.uleb128 0xe
+ 1033 00ea 3A       		.uleb128 0x3a
+ 1034 00eb 0B       		.uleb128 0xb
+ 1035 00ec 3B       		.uleb128 0x3b
+ 1036 00ed 0B       		.uleb128 0xb
+ 1037 00ee 49       		.uleb128 0x49
+ 1038 00ef 13       		.uleb128 0x13
+ 1039 00f0 3F       		.uleb128 0x3f
+ 1040 00f1 19       		.uleb128 0x19
+ 1041 00f2 02       		.uleb128 0x2
+ 1042 00f3 18       		.uleb128 0x18
+ 1043 00f4 00       		.byte	0
+ 1044 00f5 00       		.byte	0
+ 1045 00f6 10       		.uleb128 0x10
+ 1046 00f7 2E       		.uleb128 0x2e
+ 1047 00f8 00       		.byte	0
+ 1048 00f9 3F       		.uleb128 0x3f
+ 1049 00fa 19       		.uleb128 0x19
+ 1050 00fb 3C       		.uleb128 0x3c
+ 1051 00fc 19       		.uleb128 0x19
+ 1052 00fd 6E       		.uleb128 0x6e
+ 1053 00fe 0E       		.uleb128 0xe
+ 1054 00ff 03       		.uleb128 0x3
+ 1055 0100 0E       		.uleb128 0xe
+ 1056 0101 3A       		.uleb128 0x3a
+ 1057 0102 0B       		.uleb128 0xb
+ 1058 0103 3B       		.uleb128 0x3b
+ 1059 0104 0B       		.uleb128 0xb
+ 1060 0105 00       		.byte	0
+ 1061 0106 00       		.byte	0
+ 1062 0107 00       		.byte	0
+ 1063              		.section	.debug_loc,"",%progbits
+ 1064              	.Ldebug_loc0:
+ 1065              	.LLST0:
+ 1066 0000 36000000 		.4byte	.LVL10
+ 1067 0004 43000000 		.4byte	.LVL11-1
+ 1068 0008 0100     		.2byte	0x1
+ 1069 000a 50       		.byte	0x50
+ 1070 000b 00000000 		.4byte	0
+ 1071 000f 00000000 		.4byte	0
+ 1072              		.section	.debug_aranges,"",%progbits
+ 1073 0000 84000000 		.4byte	0x84
+ 1074 0004 0200     		.2byte	0x2
+ 1075 0006 00000000 		.4byte	.Ldebug_info0
+ 1076 000a 04       		.byte	0x4
+ 1077 000b 00       		.byte	0
+ 1078 000c 0000     		.2byte	0
+ 1079 000e 0000     		.2byte	0
+ 1080 0010 00000000 		.4byte	.LFB2
+ 1081 0014 02000000 		.4byte	.LFE2-.LFB2
+ 1082 0018 00000000 		.4byte	.LFB3
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 36
+
+
+ 1083 001c 02000000 		.4byte	.LFE3-.LFB3
+ 1084 0020 00000000 		.4byte	.LFB4
+ 1085 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1086 0028 00000000 		.4byte	.LFB5
+ 1087 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1088 0030 00000000 		.4byte	.LFB7
+ 1089 0034 0C000000 		.4byte	.LFE7-.LFB7
+ 1090 0038 00000000 		.4byte	.LFB8
+ 1091 003c 0C000000 		.4byte	.LFE8-.LFB8
+ 1092 0040 00000000 		.4byte	.LFB9
+ 1093 0044 0C000000 		.4byte	.LFE9-.LFB9
+ 1094 0048 00000000 		.4byte	.LFB10
+ 1095 004c 0C000000 		.4byte	.LFE10-.LFB10
+ 1096 0050 00000000 		.4byte	.LFB11
+ 1097 0054 0C000000 		.4byte	.LFE11-.LFB11
+ 1098 0058 00000000 		.4byte	.LFB6
+ 1099 005c 12000000 		.4byte	.LFE6-.LFB6
+ 1100 0060 00000000 		.4byte	.LFB1
+ 1101 0064 5C000000 		.4byte	.LFE1-.LFB1
+ 1102 0068 00000000 		.4byte	.LFB0
+ 1103 006c 1C000000 		.4byte	.LFE0-.LFB0
+ 1104 0070 00000000 		.4byte	.LFB12
+ 1105 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1106 0078 00000000 		.4byte	.LFB13
+ 1107 007c 0C000000 		.4byte	.LFE13-.LFB13
+ 1108 0080 00000000 		.4byte	0
+ 1109 0084 00000000 		.4byte	0
+ 1110              		.section	.debug_ranges,"",%progbits
+ 1111              	.Ldebug_ranges0:
+ 1112 0000 00000000 		.4byte	.LFB2
+ 1113 0004 02000000 		.4byte	.LFE2
+ 1114 0008 00000000 		.4byte	.LFB3
+ 1115 000c 02000000 		.4byte	.LFE3
+ 1116 0010 00000000 		.4byte	.LFB4
+ 1117 0014 0C000000 		.4byte	.LFE4
+ 1118 0018 00000000 		.4byte	.LFB5
+ 1119 001c 14000000 		.4byte	.LFE5
+ 1120 0020 00000000 		.4byte	.LFB7
+ 1121 0024 0C000000 		.4byte	.LFE7
+ 1122 0028 00000000 		.4byte	.LFB8
+ 1123 002c 0C000000 		.4byte	.LFE8
+ 1124 0030 00000000 		.4byte	.LFB9
+ 1125 0034 0C000000 		.4byte	.LFE9
+ 1126 0038 00000000 		.4byte	.LFB10
+ 1127 003c 0C000000 		.4byte	.LFE10
+ 1128 0040 00000000 		.4byte	.LFB11
+ 1129 0044 0C000000 		.4byte	.LFE11
+ 1130 0048 00000000 		.4byte	.LFB6
+ 1131 004c 12000000 		.4byte	.LFE6
+ 1132 0050 00000000 		.4byte	.LFB1
+ 1133 0054 5C000000 		.4byte	.LFE1
+ 1134 0058 00000000 		.4byte	.LFB0
+ 1135 005c 1C000000 		.4byte	.LFE0
+ 1136 0060 00000000 		.4byte	.LFB12
+ 1137 0064 0C000000 		.4byte	.LFE12
+ 1138 0068 00000000 		.4byte	.LFB13
+ 1139 006c 0C000000 		.4byte	.LFE13
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 37
+
+
+ 1140 0070 00000000 		.4byte	0
+ 1141 0074 00000000 		.4byte	0
+ 1142              		.section	.debug_line,"",%progbits
+ 1143              	.Ldebug_line0:
+ 1144 0000 6C010000 		.section	.debug_str,"MS",%progbits,1
+ 1144      02005300 
+ 1144      00000201 
+ 1144      FB0E0D00 
+ 1144      01010101 
+ 1145              	.LASF15:
+ 1146 0000 72656731 		.ascii	"reg16\000"
+ 1146      3600
+ 1147              	.LASF40:
+ 1148 0006 453A5C4A 		.ascii	"E:\\JP Shutter Driver\\shutter_controller.cydsn\000"
+ 1148      50205368 
+ 1148      75747465 
+ 1148      72204472 
+ 1148      69766572 
+ 1149              	.LASF39:
+ 1150 0034 47656E65 		.ascii	"Generated_Source\\PSoC4\\start_pulse.c\000"
+ 1150      72617465 
+ 1150      645F536F 
+ 1150      75726365 
+ 1150      5C50536F 
+ 1151              	.LASF28:
+ 1152 0059 73746172 		.ascii	"start_pulse_ReadCounter\000"
+ 1152      745F7075 
+ 1152      6C73655F 
+ 1152      52656164 
+ 1152      436F756E 
+ 1153              	.LASF26:
+ 1154 0071 73746172 		.ascii	"start_pulse_SetInterruptMode\000"
+ 1154      745F7075 
+ 1154      6C73655F 
+ 1154      53657449 
+ 1154      6E746572 
+ 1155              	.LASF23:
+ 1156 008e 70657269 		.ascii	"period\000"
+ 1156      6F6400
+ 1157              	.LASF3:
+ 1158 0095 73686F72 		.ascii	"short unsigned int\000"
+ 1158      7420756E 
+ 1158      7369676E 
+ 1158      65642069 
+ 1158      6E7400
+ 1159              	.LASF21:
+ 1160 00a8 73746172 		.ascii	"start_pulse_WritePeriod\000"
+ 1160      745F7075 
+ 1160      6C73655F 
+ 1160      57726974 
+ 1160      65506572 
+ 1161              	.LASF11:
+ 1162 00c0 666C6F61 		.ascii	"float\000"
+ 1162      7400
+ 1163              	.LASF22:
+ 1164 00c6 636F756E 		.ascii	"counter\000"
+ 1164      74657200 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 38
+
+
+ 1165              	.LASF7:
+ 1166 00ce 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1166      206C6F6E 
+ 1166      6720756E 
+ 1166      7369676E 
+ 1166      65642069 
+ 1167              	.LASF31:
+ 1168 00e5 73746172 		.ascii	"start_pulse_ClearFIFO\000"
+ 1168      745F7075 
+ 1168      6C73655F 
+ 1168      436C6561 
+ 1168      72464946 
+ 1169              	.LASF20:
+ 1170 00fb 73746172 		.ascii	"start_pulse_WriteCounter\000"
+ 1170      745F7075 
+ 1170      6C73655F 
+ 1170      57726974 
+ 1170      65436F75 
+ 1171              	.LASF14:
+ 1172 0114 72656738 		.ascii	"reg8\000"
+ 1172      00
+ 1173              	.LASF35:
+ 1174 0119 73746172 		.ascii	"start_pulse_ReadPeriod\000"
+ 1174      745F7075 
+ 1174      6C73655F 
+ 1174      52656164 
+ 1174      50657269 
+ 1175              	.LASF32:
+ 1176 0130 73746172 		.ascii	"start_pulse_Init\000"
+ 1176      745F7075 
+ 1176      6C73655F 
+ 1176      496E6974 
+ 1176      00
+ 1177              	.LASF5:
+ 1178 0141 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1178      20756E73 
+ 1178      69676E65 
+ 1178      6420696E 
+ 1178      7400
+ 1179              	.LASF9:
+ 1180 0153 75696E74 		.ascii	"uint8\000"
+ 1180      3800
+ 1181              	.LASF1:
+ 1182 0159 756E7369 		.ascii	"unsigned char\000"
+ 1182      676E6564 
+ 1182      20636861 
+ 1182      7200
+ 1183              	.LASF12:
+ 1184 0167 646F7562 		.ascii	"double\000"
+ 1184      6C6500
+ 1185              	.LASF16:
+ 1186 016e 6C6F6E67 		.ascii	"long double\000"
+ 1186      20646F75 
+ 1186      626C6500 
+ 1187              	.LASF10:
+ 1188 017a 75696E74 		.ascii	"uint16\000"
+ 1188      313600
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 39
+
+
+ 1189              	.LASF29:
+ 1190 0181 73746172 		.ascii	"start_pulse_ReadStatusRegister\000"
+ 1190      745F7075 
+ 1190      6C73655F 
+ 1190      52656164 
+ 1190      53746174 
+ 1191              	.LASF36:
+ 1192 01a0 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1192      74657243 
+ 1192      72697469 
+ 1192      63616C53 
+ 1192      65637469 
+ 1193              	.LASF8:
+ 1194 01b7 756E7369 		.ascii	"unsigned int\000"
+ 1194      676E6564 
+ 1194      20696E74 
+ 1194      00
+ 1195              	.LASF37:
+ 1196 01c4 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1196      69744372 
+ 1196      69746963 
+ 1196      616C5365 
+ 1196      6374696F 
+ 1197              	.LASF42:
+ 1198 01da 73746172 		.ascii	"start_pulse_initVar\000"
+ 1198      745F7075 
+ 1198      6C73655F 
+ 1198      696E6974 
+ 1198      56617200 
+ 1199              	.LASF38:
+ 1200 01ee 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1200      43313120 
+ 1200      352E342E 
+ 1200      31203230 
+ 1200      31363036 
+ 1201 0221 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1201      20726576 
+ 1201      6973696F 
+ 1201      6E203233 
+ 1201      37373135 
+ 1202 0254 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1202      66756E63 
+ 1202      74696F6E 
+ 1202      2D736563 
+ 1202      74696F6E 
+ 1203              	.LASF19:
+ 1204 027c 73746172 		.ascii	"start_pulse_Stop\000"
+ 1204      745F7075 
+ 1204      6C73655F 
+ 1204      53746F70 
+ 1204      00
+ 1205              	.LASF34:
+ 1206 028d 73746172 		.ascii	"start_pulse_ReadCompare\000"
+ 1206      745F7075 
+ 1206      6C73655F 
+ 1206      52656164 
+ 1206      436F6D70 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 40
+
+
+ 1207              	.LASF17:
+ 1208 02a5 73697A65 		.ascii	"sizetype\000"
+ 1208      74797065 
+ 1208      00
+ 1209              	.LASF6:
+ 1210 02ae 6C6F6E67 		.ascii	"long long int\000"
+ 1210      206C6F6E 
+ 1210      6720696E 
+ 1210      7400
+ 1211              	.LASF33:
+ 1212 02bc 73746172 		.ascii	"start_pulse_Start\000"
+ 1212      745F7075 
+ 1212      6C73655F 
+ 1212      53746172 
+ 1212      7400
+ 1213              	.LASF27:
+ 1214 02ce 696E7465 		.ascii	"interruptMode\000"
+ 1214      72727570 
+ 1214      744D6F64 
+ 1214      6500
+ 1215              	.LASF30:
+ 1216 02dc 73746172 		.ascii	"start_pulse_ReadCapture\000"
+ 1216      745F7075 
+ 1216      6C73655F 
+ 1216      52656164 
+ 1216      43617074 
+ 1217              	.LASF2:
+ 1218 02f4 73686F72 		.ascii	"short int\000"
+ 1218      7420696E 
+ 1218      7400
+ 1219              	.LASF4:
+ 1220 02fe 6C6F6E67 		.ascii	"long int\000"
+ 1220      20696E74 
+ 1220      00
+ 1221              	.LASF13:
+ 1222 0307 63686172 		.ascii	"char\000"
+ 1222      00
+ 1223              	.LASF41:
+ 1224 030c 73746172 		.ascii	"start_pulse_interruptState\000"
+ 1224      745F7075 
+ 1224      6C73655F 
+ 1224      696E7465 
+ 1224      72727570 
+ 1225              	.LASF0:
+ 1226 0327 7369676E 		.ascii	"signed char\000"
+ 1226      65642063 
+ 1226      68617200 
+ 1227              	.LASF25:
+ 1228 0333 636F6D70 		.ascii	"compare\000"
+ 1228      61726500 
+ 1229              	.LASF24:
+ 1230 033b 73746172 		.ascii	"start_pulse_WriteCompare\000"
+ 1230      745F7075 
+ 1230      6C73655F 
+ 1230      57726974 
+ 1230      65436F6D 
+ 1231              	.LASF18:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccnvFuMX.s 			page 41
+
+
+ 1232 0354 73746172 		.ascii	"start_pulse_Enable\000"
+ 1232      745F7075 
+ 1232      6C73655F 
+ 1232      456E6162 
+ 1232      6C6500
+ 1233              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

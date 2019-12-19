@@ -1,0 +1,467 @@
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB32:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** 
+  14:main.c        **** int main(void)
+  15:main.c        **** {
+  28              		.loc 1 15 0
+  29              		.cfi_startproc
+  30              		@ Volatile: function does not return.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  16:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  37              		.loc 1 16 0
+  38              		.syntax divided
+  39              	@ 16 "main.c" 1
+  40 0002 62B6     		CPSIE   i
+  41              	@ 0 "" 2
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 2
+
+
+  17:main.c        **** 
+  18:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  19:main.c        ****     start_pulse_Start();
+  42              		.loc 1 19 0
+  43              		.thumb
+  44              		.syntax unified
+  45 0004 FFF7FEFF 		bl	start_pulse_Start
+  46              	.LVL0:
+  20:main.c        ****     microsecond_clock_Start();
+  47              		.loc 1 20 0
+  48 0008 FFF7FEFF 		bl	microsecond_clock_Start
+  49              	.LVL1:
+  21:main.c        ****     HS_Clock_Start();
+  50              		.loc 1 21 0
+  51 000c FFF7FEFF 		bl	HS_Clock_Start
+  52              	.LVL2:
+  22:main.c        ****     Timer_1_Start();
+  53              		.loc 1 22 0
+  54 0010 FFF7FEFF 		bl	Timer_1_Start
+  55              	.LVL3:
+  56              	.L2:
+  57 0014 FEE7     		b	.L2
+  58              		.cfi_endproc
+  59              	.LFE32:
+  60              		.size	main, .-main
+  61 0016 C046     		.text
+  62              	.Letext0:
+  63              		.file 2 "Generated_Source\\PSoC4/start_pulse.h"
+  64              		.file 3 "Generated_Source\\PSoC4/microsecond_clock.h"
+  65              		.file 4 "Generated_Source\\PSoC4/HS_Clock.h"
+  66              		.file 5 "Generated_Source\\PSoC4/Timer_1.h"
+  67              		.section	.debug_info,"",%progbits
+  68              	.Ldebug_info0:
+  69 0000 F5000000 		.4byte	0xf5
+  70 0004 0400     		.2byte	0x4
+  71 0006 00000000 		.4byte	.Ldebug_abbrev0
+  72 000a 04       		.byte	0x4
+  73 000b 01       		.uleb128 0x1
+  74 000c EE000000 		.4byte	.LASF18
+  75 0010 0C       		.byte	0xc
+  76 0011 58000000 		.4byte	.LASF19
+  77 0015 0E000000 		.4byte	.LASF20
+  78 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  79 001d 00000000 		.4byte	0
+  80 0021 00000000 		.4byte	.Ldebug_line0
+  81 0025 02       		.uleb128 0x2
+  82 0026 01       		.byte	0x1
+  83 0027 06       		.byte	0x6
+  84 0028 8F010000 		.4byte	.LASF0
+  85 002c 02       		.uleb128 0x2
+  86 002d 01       		.byte	0x1
+  87 002e 08       		.byte	0x8
+  88 002f B9000000 		.4byte	.LASF1
+  89 0033 02       		.uleb128 0x2
+  90 0034 02       		.byte	0x2
+  91 0035 05       		.byte	0x5
+  92 0036 A7010000 		.4byte	.LASF2
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 3
+
+
+  93 003a 02       		.uleb128 0x2
+  94 003b 02       		.byte	0x2
+  95 003c 07       		.byte	0x7
+  96 003d 7C010000 		.4byte	.LASF3
+  97 0041 02       		.uleb128 0x2
+  98 0042 04       		.byte	0x4
+  99 0043 05       		.byte	0x5
+ 100 0044 CC000000 		.4byte	.LASF4
+ 101 0048 02       		.uleb128 0x2
+ 102 0049 04       		.byte	0x4
+ 103 004a 07       		.byte	0x7
+ 104 004b 64000000 		.4byte	.LASF5
+ 105 004f 02       		.uleb128 0x2
+ 106 0050 08       		.byte	0x8
+ 107 0051 05       		.byte	0x5
+ 108 0052 00000000 		.4byte	.LASF6
+ 109 0056 02       		.uleb128 0x2
+ 110 0057 08       		.byte	0x8
+ 111 0058 07       		.byte	0x7
+ 112 0059 76000000 		.4byte	.LASF7
+ 113 005d 03       		.uleb128 0x3
+ 114 005e 04       		.byte	0x4
+ 115 005f 05       		.byte	0x5
+ 116 0060 696E7400 		.ascii	"int\000"
+ 117 0064 02       		.uleb128 0x2
+ 118 0065 04       		.byte	0x4
+ 119 0066 07       		.byte	0x7
+ 120 0067 3C000000 		.4byte	.LASF8
+ 121 006b 02       		.uleb128 0x2
+ 122 006c 04       		.byte	0x4
+ 123 006d 04       		.byte	0x4
+ 124 006e A5000000 		.4byte	.LASF9
+ 125 0072 02       		.uleb128 0x2
+ 126 0073 08       		.byte	0x8
+ 127 0074 04       		.byte	0x4
+ 128 0075 E7000000 		.4byte	.LASF10
+ 129 0079 02       		.uleb128 0x2
+ 130 007a 01       		.byte	0x1
+ 131 007b 08       		.byte	0x8
+ 132 007c C7000000 		.4byte	.LASF11
+ 133 0080 02       		.uleb128 0x2
+ 134 0081 08       		.byte	0x8
+ 135 0082 04       		.byte	0x4
+ 136 0083 9B010000 		.4byte	.LASF12
+ 137 0087 02       		.uleb128 0x2
+ 138 0088 04       		.byte	0x4
+ 139 0089 07       		.byte	0x7
+ 140 008a B1010000 		.4byte	.LASF13
+ 141 008e 04       		.uleb128 0x4
+ 142 008f 5F000000 		.4byte	.LASF21
+ 143 0093 01       		.byte	0x1
+ 144 0094 0E       		.byte	0xe
+ 145 0095 5D000000 		.4byte	0x5d
+ 146 0099 00000000 		.4byte	.LFB32
+ 147 009d 16000000 		.4byte	.LFE32-.LFB32
+ 148 00a1 01       		.uleb128 0x1
+ 149 00a2 9C       		.byte	0x9c
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 4
+
+
+ 150 00a3 CC000000 		.4byte	0xcc
+ 151 00a7 05       		.uleb128 0x5
+ 152 00a8 08000000 		.4byte	.LVL0
+ 153 00ac CC000000 		.4byte	0xcc
+ 154 00b0 05       		.uleb128 0x5
+ 155 00b1 0C000000 		.4byte	.LVL1
+ 156 00b5 D7000000 		.4byte	0xd7
+ 157 00b9 05       		.uleb128 0x5
+ 158 00ba 10000000 		.4byte	.LVL2
+ 159 00be E2000000 		.4byte	0xe2
+ 160 00c2 05       		.uleb128 0x5
+ 161 00c3 14000000 		.4byte	.LVL3
+ 162 00c7 ED000000 		.4byte	0xed
+ 163 00cb 00       		.byte	0
+ 164 00cc 06       		.uleb128 0x6
+ 165 00cd D5000000 		.4byte	.LASF14
+ 166 00d1 D5000000 		.4byte	.LASF14
+ 167 00d5 02       		.byte	0x2
+ 168 00d6 92       		.byte	0x92
+ 169 00d7 06       		.uleb128 0x6
+ 170 00d8 8D000000 		.4byte	.LASF15
+ 171 00dc 8D000000 		.4byte	.LASF15
+ 172 00e0 03       		.byte	0x3
+ 173 00e1 23       		.byte	0x23
+ 174 00e2 06       		.uleb128 0x6
+ 175 00e3 49000000 		.4byte	.LASF16
+ 176 00e7 49000000 		.4byte	.LASF16
+ 177 00eb 04       		.byte	0x4
+ 178 00ec 23       		.byte	0x23
+ 179 00ed 06       		.uleb128 0x6
+ 180 00ee AB000000 		.4byte	.LASF17
+ 181 00f2 AB000000 		.4byte	.LASF17
+ 182 00f6 05       		.byte	0x5
+ 183 00f7 5A       		.byte	0x5a
+ 184 00f8 00       		.byte	0
+ 185              		.section	.debug_abbrev,"",%progbits
+ 186              	.Ldebug_abbrev0:
+ 187 0000 01       		.uleb128 0x1
+ 188 0001 11       		.uleb128 0x11
+ 189 0002 01       		.byte	0x1
+ 190 0003 25       		.uleb128 0x25
+ 191 0004 0E       		.uleb128 0xe
+ 192 0005 13       		.uleb128 0x13
+ 193 0006 0B       		.uleb128 0xb
+ 194 0007 03       		.uleb128 0x3
+ 195 0008 0E       		.uleb128 0xe
+ 196 0009 1B       		.uleb128 0x1b
+ 197 000a 0E       		.uleb128 0xe
+ 198 000b 55       		.uleb128 0x55
+ 199 000c 17       		.uleb128 0x17
+ 200 000d 11       		.uleb128 0x11
+ 201 000e 01       		.uleb128 0x1
+ 202 000f 10       		.uleb128 0x10
+ 203 0010 17       		.uleb128 0x17
+ 204 0011 00       		.byte	0
+ 205 0012 00       		.byte	0
+ 206 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 5
+
+
+ 207 0014 24       		.uleb128 0x24
+ 208 0015 00       		.byte	0
+ 209 0016 0B       		.uleb128 0xb
+ 210 0017 0B       		.uleb128 0xb
+ 211 0018 3E       		.uleb128 0x3e
+ 212 0019 0B       		.uleb128 0xb
+ 213 001a 03       		.uleb128 0x3
+ 214 001b 0E       		.uleb128 0xe
+ 215 001c 00       		.byte	0
+ 216 001d 00       		.byte	0
+ 217 001e 03       		.uleb128 0x3
+ 218 001f 24       		.uleb128 0x24
+ 219 0020 00       		.byte	0
+ 220 0021 0B       		.uleb128 0xb
+ 221 0022 0B       		.uleb128 0xb
+ 222 0023 3E       		.uleb128 0x3e
+ 223 0024 0B       		.uleb128 0xb
+ 224 0025 03       		.uleb128 0x3
+ 225 0026 08       		.uleb128 0x8
+ 226 0027 00       		.byte	0
+ 227 0028 00       		.byte	0
+ 228 0029 04       		.uleb128 0x4
+ 229 002a 2E       		.uleb128 0x2e
+ 230 002b 01       		.byte	0x1
+ 231 002c 3F       		.uleb128 0x3f
+ 232 002d 19       		.uleb128 0x19
+ 233 002e 03       		.uleb128 0x3
+ 234 002f 0E       		.uleb128 0xe
+ 235 0030 3A       		.uleb128 0x3a
+ 236 0031 0B       		.uleb128 0xb
+ 237 0032 3B       		.uleb128 0x3b
+ 238 0033 0B       		.uleb128 0xb
+ 239 0034 27       		.uleb128 0x27
+ 240 0035 19       		.uleb128 0x19
+ 241 0036 49       		.uleb128 0x49
+ 242 0037 13       		.uleb128 0x13
+ 243 0038 8701     		.uleb128 0x87
+ 244 003a 19       		.uleb128 0x19
+ 245 003b 11       		.uleb128 0x11
+ 246 003c 01       		.uleb128 0x1
+ 247 003d 12       		.uleb128 0x12
+ 248 003e 06       		.uleb128 0x6
+ 249 003f 40       		.uleb128 0x40
+ 250 0040 18       		.uleb128 0x18
+ 251 0041 9742     		.uleb128 0x2117
+ 252 0043 19       		.uleb128 0x19
+ 253 0044 01       		.uleb128 0x1
+ 254 0045 13       		.uleb128 0x13
+ 255 0046 00       		.byte	0
+ 256 0047 00       		.byte	0
+ 257 0048 05       		.uleb128 0x5
+ 258 0049 898201   		.uleb128 0x4109
+ 259 004c 00       		.byte	0
+ 260 004d 11       		.uleb128 0x11
+ 261 004e 01       		.uleb128 0x1
+ 262 004f 31       		.uleb128 0x31
+ 263 0050 13       		.uleb128 0x13
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 6
+
+
+ 264 0051 00       		.byte	0
+ 265 0052 00       		.byte	0
+ 266 0053 06       		.uleb128 0x6
+ 267 0054 2E       		.uleb128 0x2e
+ 268 0055 00       		.byte	0
+ 269 0056 3F       		.uleb128 0x3f
+ 270 0057 19       		.uleb128 0x19
+ 271 0058 3C       		.uleb128 0x3c
+ 272 0059 19       		.uleb128 0x19
+ 273 005a 6E       		.uleb128 0x6e
+ 274 005b 0E       		.uleb128 0xe
+ 275 005c 03       		.uleb128 0x3
+ 276 005d 0E       		.uleb128 0xe
+ 277 005e 3A       		.uleb128 0x3a
+ 278 005f 0B       		.uleb128 0xb
+ 279 0060 3B       		.uleb128 0x3b
+ 280 0061 0B       		.uleb128 0xb
+ 281 0062 00       		.byte	0
+ 282 0063 00       		.byte	0
+ 283 0064 00       		.byte	0
+ 284              		.section	.debug_aranges,"",%progbits
+ 285 0000 1C000000 		.4byte	0x1c
+ 286 0004 0200     		.2byte	0x2
+ 287 0006 00000000 		.4byte	.Ldebug_info0
+ 288 000a 04       		.byte	0x4
+ 289 000b 00       		.byte	0
+ 290 000c 0000     		.2byte	0
+ 291 000e 0000     		.2byte	0
+ 292 0010 00000000 		.4byte	.LFB32
+ 293 0014 16000000 		.4byte	.LFE32-.LFB32
+ 294 0018 00000000 		.4byte	0
+ 295 001c 00000000 		.4byte	0
+ 296              		.section	.debug_ranges,"",%progbits
+ 297              	.Ldebug_ranges0:
+ 298 0000 00000000 		.4byte	.LFB32
+ 299 0004 16000000 		.4byte	.LFE32
+ 300 0008 00000000 		.4byte	0
+ 301 000c 00000000 		.4byte	0
+ 302              		.section	.debug_line,"",%progbits
+ 303              	.Ldebug_line0:
+ 304 0000 91000000 		.section	.debug_str,"MS",%progbits,1
+ 304      02007700 
+ 304      00000201 
+ 304      FB0E0D00 
+ 304      01010101 
+ 305              	.LASF6:
+ 306 0000 6C6F6E67 		.ascii	"long long int\000"
+ 306      206C6F6E 
+ 306      6720696E 
+ 306      7400
+ 307              	.LASF20:
+ 308 000e 453A5C4A 		.ascii	"E:\\JP Shutter Driver\\shutter_controller.cydsn\000"
+ 308      50205368 
+ 308      75747465 
+ 308      72204472 
+ 308      69766572 
+ 309              	.LASF8:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 7
+
+
+ 310 003c 756E7369 		.ascii	"unsigned int\000"
+ 310      676E6564 
+ 310      20696E74 
+ 310      00
+ 311              	.LASF16:
+ 312 0049 48535F43 		.ascii	"HS_Clock_Start\000"
+ 312      6C6F636B 
+ 312      5F537461 
+ 312      727400
+ 313              	.LASF19:
+ 314 0058 6D61696E 		.ascii	"main.c\000"
+ 314      2E6300
+ 315              	.LASF21:
+ 316 005f 6D61696E 		.ascii	"main\000"
+ 316      00
+ 317              	.LASF5:
+ 318 0064 6C6F6E67 		.ascii	"long unsigned int\000"
+ 318      20756E73 
+ 318      69676E65 
+ 318      6420696E 
+ 318      7400
+ 319              	.LASF7:
+ 320 0076 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 320      206C6F6E 
+ 320      6720756E 
+ 320      7369676E 
+ 320      65642069 
+ 321              	.LASF15:
+ 322 008d 6D696372 		.ascii	"microsecond_clock_Start\000"
+ 322      6F736563 
+ 322      6F6E645F 
+ 322      636C6F63 
+ 322      6B5F5374 
+ 323              	.LASF9:
+ 324 00a5 666C6F61 		.ascii	"float\000"
+ 324      7400
+ 325              	.LASF17:
+ 326 00ab 54696D65 		.ascii	"Timer_1_Start\000"
+ 326      725F315F 
+ 326      53746172 
+ 326      7400
+ 327              	.LASF1:
+ 328 00b9 756E7369 		.ascii	"unsigned char\000"
+ 328      676E6564 
+ 328      20636861 
+ 328      7200
+ 329              	.LASF11:
+ 330 00c7 63686172 		.ascii	"char\000"
+ 330      00
+ 331              	.LASF4:
+ 332 00cc 6C6F6E67 		.ascii	"long int\000"
+ 332      20696E74 
+ 332      00
+ 333              	.LASF14:
+ 334 00d5 73746172 		.ascii	"start_pulse_Start\000"
+ 334      745F7075 
+ 334      6C73655F 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccUazlzr.s 			page 8
+
+
+ 334      53746172 
+ 334      7400
+ 335              	.LASF10:
+ 336 00e7 646F7562 		.ascii	"double\000"
+ 336      6C6500
+ 337              	.LASF18:
+ 338 00ee 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 338      43313120 
+ 338      352E342E 
+ 338      31203230 
+ 338      31363036 
+ 339 0121 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 339      20726576 
+ 339      6973696F 
+ 339      6E203233 
+ 339      37373135 
+ 340 0154 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 340      66756E63 
+ 340      74696F6E 
+ 340      2D736563 
+ 340      74696F6E 
+ 341              	.LASF3:
+ 342 017c 73686F72 		.ascii	"short unsigned int\000"
+ 342      7420756E 
+ 342      7369676E 
+ 342      65642069 
+ 342      6E7400
+ 343              	.LASF0:
+ 344 018f 7369676E 		.ascii	"signed char\000"
+ 344      65642063 
+ 344      68617200 
+ 345              	.LASF12:
+ 346 019b 6C6F6E67 		.ascii	"long double\000"
+ 346      20646F75 
+ 346      626C6500 
+ 347              	.LASF2:
+ 348 01a7 73686F72 		.ascii	"short int\000"
+ 348      7420696E 
+ 348      7400
+ 349              	.LASF13:
+ 350 01b1 73697A65 		.ascii	"sizetype\000"
+ 350      74797065 
+ 350      00
+ 351              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,6 @@
+E:\JP Shutter Driver\shutter_controller.cydsn\shutter_controller.cyprj|182ba846-5629-4294-bb1f-ff7817f4207b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a7438d0a-3844-4e8d-b039-c1053741d24d
+C:\Users\Physlab121\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|c5cbd4e7-ffb2-44ad-9eb4-aa2fcfb2729f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|3591a436-a873-44dc-82c9-16f56cd5f98c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|1faebccd-b0e4-4423-ab74-63f28b42e341
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7be74ed8-7b02-417d-b743-37bc83e30797

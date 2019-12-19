@@ -1,0 +1,936 @@
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Timer_1_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Timer_1_SaveConfig,"ax",%progbits
+  20              		.align	2
+  21              		.global	Timer_1_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Timer_1_SaveConfig, %function
+  25              	Timer_1_SaveConfig:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\Timer_1_PM.c"
+   1:Generated_Source\PSoC4/Timer_1_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Timer_1_PM.c **** * File Name: Timer_1_PM.c
+   3:Generated_Source\PSoC4/Timer_1_PM.c **** * Version 2.80
+   4:Generated_Source\PSoC4/Timer_1_PM.c **** *
+   5:Generated_Source\PSoC4/Timer_1_PM.c **** *  Description:
+   6:Generated_Source\PSoC4/Timer_1_PM.c **** *     This file provides the power management source code to API for the
+   7:Generated_Source\PSoC4/Timer_1_PM.c **** *     Timer.
+   8:Generated_Source\PSoC4/Timer_1_PM.c **** *
+   9:Generated_Source\PSoC4/Timer_1_PM.c **** *   Note:
+  10:Generated_Source\PSoC4/Timer_1_PM.c **** *     None
+  11:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  12:Generated_Source\PSoC4/Timer_1_PM.c **** *******************************************************************************
+  13:Generated_Source\PSoC4/Timer_1_PM.c **** * Copyright 2008-2017, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/Timer_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/Timer_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/Timer_1_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/Timer_1_PM.c **** ********************************************************************************/
+  18:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  19:Generated_Source\PSoC4/Timer_1_PM.c **** #include "Timer_1.h"
+  20:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  21:Generated_Source\PSoC4/Timer_1_PM.c **** static Timer_1_backupStruct Timer_1_backup;
+  22:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  23:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  24:Generated_Source\PSoC4/Timer_1_PM.c **** /*******************************************************************************
+  25:Generated_Source\PSoC4/Timer_1_PM.c **** * Function Name: Timer_1_SaveConfig
+  26:Generated_Source\PSoC4/Timer_1_PM.c **** ********************************************************************************
+  27:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  28:Generated_Source\PSoC4/Timer_1_PM.c **** * Summary:
+  29:Generated_Source\PSoC4/Timer_1_PM.c **** *     Save the current user configuration
+  30:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 2
+
+
+  31:Generated_Source\PSoC4/Timer_1_PM.c **** * Parameters:
+  32:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+  33:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  34:Generated_Source\PSoC4/Timer_1_PM.c **** * Return:
+  35:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+  36:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  37:Generated_Source\PSoC4/Timer_1_PM.c **** * Global variables:
+  38:Generated_Source\PSoC4/Timer_1_PM.c **** *  Timer_1_backup:  Variables of this global structure are modified to
+  39:Generated_Source\PSoC4/Timer_1_PM.c **** *  store the values of non retention configuration registers when Sleep() API is
+  40:Generated_Source\PSoC4/Timer_1_PM.c **** *  called.
+  41:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  42:Generated_Source\PSoC4/Timer_1_PM.c **** *******************************************************************************/
+  43:Generated_Source\PSoC4/Timer_1_PM.c **** void Timer_1_SaveConfig(void) 
+  44:Generated_Source\PSoC4/Timer_1_PM.c **** {
+  28              		.loc 1 44 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  45:Generated_Source\PSoC4/Timer_1_PM.c ****     #if (!Timer_1_UsingFixedFunction)
+  46:Generated_Source\PSoC4/Timer_1_PM.c ****         Timer_1_backup.TimerUdb = Timer_1_ReadCounter();
+  36              		.loc 1 46 0
+  37 0002 FFF7FEFF 		bl	Timer_1_ReadCounter
+  38              	.LVL0:
+  39 0006 034B     		ldr	r3, .L2
+  40 0008 5880     		strh	r0, [r3, #2]
+  47:Generated_Source\PSoC4/Timer_1_PM.c ****         Timer_1_backup.InterruptMaskValue = Timer_1_STATUS_MASK;
+  41              		.loc 1 47 0
+  42 000a 034A     		ldr	r2, .L2+4
+  43 000c 1278     		ldrb	r2, [r2]
+  44 000e 1A71     		strb	r2, [r3, #4]
+  48:Generated_Source\PSoC4/Timer_1_PM.c ****         #if (Timer_1_UsingHWCaptureCounter)
+  49:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_backup.TimerCaptureCounter = Timer_1_ReadCaptureCount();
+  50:Generated_Source\PSoC4/Timer_1_PM.c ****         #endif /* Back Up capture counter register  */
+  51:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  52:Generated_Source\PSoC4/Timer_1_PM.c ****         #if(!Timer_1_UDB_CONTROL_REG_REMOVED)
+  53:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_backup.TimerControlRegister = Timer_1_ReadControlRegister();
+  54:Generated_Source\PSoC4/Timer_1_PM.c ****         #endif /* Backup the enable state of the Timer component */
+  55:Generated_Source\PSoC4/Timer_1_PM.c ****     #endif /* Backup non retention registers in UDB implementation. All fixed function registers ar
+  56:Generated_Source\PSoC4/Timer_1_PM.c **** }
+  45              		.loc 1 56 0
+  46              		@ sp needed
+  47 0010 10BD     		pop	{r4, pc}
+  48              	.L3:
+  49 0012 C046     		.align	2
+  50              	.L2:
+  51 0014 00000000 		.word	.LANCHOR0
+  52 0018 83000F40 		.word	1074724995
+  53              		.cfi_endproc
+  54              	.LFE0:
+  55              		.size	Timer_1_SaveConfig, .-Timer_1_SaveConfig
+  56              		.section	.text.Timer_1_RestoreConfig,"ax",%progbits
+  57              		.align	2
+  58              		.global	Timer_1_RestoreConfig
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 3
+
+
+  59              		.code	16
+  60              		.thumb_func
+  61              		.type	Timer_1_RestoreConfig, %function
+  62              	Timer_1_RestoreConfig:
+  63              	.LFB1:
+  57:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  58:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  59:Generated_Source\PSoC4/Timer_1_PM.c **** /*******************************************************************************
+  60:Generated_Source\PSoC4/Timer_1_PM.c **** * Function Name: Timer_1_RestoreConfig
+  61:Generated_Source\PSoC4/Timer_1_PM.c **** ********************************************************************************
+  62:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  63:Generated_Source\PSoC4/Timer_1_PM.c **** * Summary:
+  64:Generated_Source\PSoC4/Timer_1_PM.c **** *  Restores the current user configuration.
+  65:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  66:Generated_Source\PSoC4/Timer_1_PM.c **** * Parameters:
+  67:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+  68:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  69:Generated_Source\PSoC4/Timer_1_PM.c **** * Return:
+  70:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+  71:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  72:Generated_Source\PSoC4/Timer_1_PM.c **** * Global variables:
+  73:Generated_Source\PSoC4/Timer_1_PM.c **** *  Timer_1_backup:  Variables of this global structure are used to
+  74:Generated_Source\PSoC4/Timer_1_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  75:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  76:Generated_Source\PSoC4/Timer_1_PM.c **** *******************************************************************************/
+  77:Generated_Source\PSoC4/Timer_1_PM.c **** void Timer_1_RestoreConfig(void) 
+  78:Generated_Source\PSoC4/Timer_1_PM.c **** {   
+  64              		.loc 1 78 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 10B5     		push	{r4, lr}
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 4, -8
+  71              		.cfi_offset 14, -4
+  79:Generated_Source\PSoC4/Timer_1_PM.c ****     #if (!Timer_1_UsingFixedFunction)
+  80:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  81:Generated_Source\PSoC4/Timer_1_PM.c ****         Timer_1_WriteCounter(Timer_1_backup.TimerUdb);
+  72              		.loc 1 81 0
+  73 0002 044C     		ldr	r4, .L5
+  74 0004 6088     		ldrh	r0, [r4, #2]
+  75 0006 FFF7FEFF 		bl	Timer_1_WriteCounter
+  76              	.LVL1:
+  82:Generated_Source\PSoC4/Timer_1_PM.c ****         Timer_1_STATUS_MASK =Timer_1_backup.InterruptMaskValue;
+  77              		.loc 1 82 0
+  78 000a 2279     		ldrb	r2, [r4, #4]
+  79 000c 024B     		ldr	r3, .L5+4
+  80 000e 1A70     		strb	r2, [r3]
+  83:Generated_Source\PSoC4/Timer_1_PM.c ****         #if (Timer_1_UsingHWCaptureCounter)
+  84:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_SetCaptureCount(Timer_1_backup.TimerCaptureCounter);
+  85:Generated_Source\PSoC4/Timer_1_PM.c ****         #endif /* Restore Capture counter register*/
+  86:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  87:Generated_Source\PSoC4/Timer_1_PM.c ****         #if(!Timer_1_UDB_CONTROL_REG_REMOVED)
+  88:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_WriteControlRegister(Timer_1_backup.TimerControlRegister);
+  89:Generated_Source\PSoC4/Timer_1_PM.c ****         #endif /* Restore the enable state of the Timer component */
+  90:Generated_Source\PSoC4/Timer_1_PM.c ****     #endif /* Restore non retention registers in the UDB implementation only */
+  91:Generated_Source\PSoC4/Timer_1_PM.c **** }
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 4
+
+
+  81              		.loc 1 91 0
+  82              		@ sp needed
+  83 0010 10BD     		pop	{r4, pc}
+  84              	.L6:
+  85 0012 C046     		.align	2
+  86              	.L5:
+  87 0014 00000000 		.word	.LANCHOR0
+  88 0018 83000F40 		.word	1074724995
+  89              		.cfi_endproc
+  90              	.LFE1:
+  91              		.size	Timer_1_RestoreConfig, .-Timer_1_RestoreConfig
+  92              		.section	.text.Timer_1_Sleep,"ax",%progbits
+  93              		.align	2
+  94              		.global	Timer_1_Sleep
+  95              		.code	16
+  96              		.thumb_func
+  97              		.type	Timer_1_Sleep, %function
+  98              	Timer_1_Sleep:
+  99              	.LFB2:
+  92:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  93:Generated_Source\PSoC4/Timer_1_PM.c **** 
+  94:Generated_Source\PSoC4/Timer_1_PM.c **** /*******************************************************************************
+  95:Generated_Source\PSoC4/Timer_1_PM.c **** * Function Name: Timer_1_Sleep
+  96:Generated_Source\PSoC4/Timer_1_PM.c **** ********************************************************************************
+  97:Generated_Source\PSoC4/Timer_1_PM.c **** *
+  98:Generated_Source\PSoC4/Timer_1_PM.c **** * Summary:
+  99:Generated_Source\PSoC4/Timer_1_PM.c **** *     Stop and Save the user configuration
+ 100:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 101:Generated_Source\PSoC4/Timer_1_PM.c **** * Parameters:
+ 102:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+ 103:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 104:Generated_Source\PSoC4/Timer_1_PM.c **** * Return:
+ 105:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+ 106:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 107:Generated_Source\PSoC4/Timer_1_PM.c **** * Global variables:
+ 108:Generated_Source\PSoC4/Timer_1_PM.c **** *  Timer_1_backup.TimerEnableState:  Is modified depending on the
+ 109:Generated_Source\PSoC4/Timer_1_PM.c **** *  enable state of the block before entering sleep mode.
+ 110:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 111:Generated_Source\PSoC4/Timer_1_PM.c **** *******************************************************************************/
+ 112:Generated_Source\PSoC4/Timer_1_PM.c **** void Timer_1_Sleep(void) 
+ 113:Generated_Source\PSoC4/Timer_1_PM.c **** {
+ 100              		.loc 1 113 0
+ 101              		.cfi_startproc
+ 102              		@ args = 0, pretend = 0, frame = 0
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104 0000 10B5     		push	{r4, lr}
+ 105              		.cfi_def_cfa_offset 8
+ 106              		.cfi_offset 4, -8
+ 107              		.cfi_offset 14, -4
+ 114:Generated_Source\PSoC4/Timer_1_PM.c ****     #if(!Timer_1_UDB_CONTROL_REG_REMOVED)
+ 115:Generated_Source\PSoC4/Timer_1_PM.c ****         /* Save Counter's enable state */
+ 116:Generated_Source\PSoC4/Timer_1_PM.c ****         if(Timer_1_CTRL_ENABLE == (Timer_1_CONTROL & Timer_1_CTRL_ENABLE))
+ 117:Generated_Source\PSoC4/Timer_1_PM.c ****         {
+ 118:Generated_Source\PSoC4/Timer_1_PM.c ****             /* Timer is enabled */
+ 119:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_backup.TimerEnableState = 1u;
+ 120:Generated_Source\PSoC4/Timer_1_PM.c ****         }
+ 121:Generated_Source\PSoC4/Timer_1_PM.c ****         else
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 5
+
+
+ 122:Generated_Source\PSoC4/Timer_1_PM.c ****         {
+ 123:Generated_Source\PSoC4/Timer_1_PM.c ****             /* Timer is disabled */
+ 124:Generated_Source\PSoC4/Timer_1_PM.c ****             Timer_1_backup.TimerEnableState = 0u;
+ 125:Generated_Source\PSoC4/Timer_1_PM.c ****         }
+ 126:Generated_Source\PSoC4/Timer_1_PM.c ****     #endif /* Back up enable state from the Timer control register */
+ 127:Generated_Source\PSoC4/Timer_1_PM.c ****     Timer_1_Stop();
+ 108              		.loc 1 127 0
+ 109 0002 FFF7FEFF 		bl	Timer_1_Stop
+ 110              	.LVL2:
+ 128:Generated_Source\PSoC4/Timer_1_PM.c ****     Timer_1_SaveConfig();
+ 111              		.loc 1 128 0
+ 112 0006 FFF7FEFF 		bl	Timer_1_SaveConfig
+ 113              	.LVL3:
+ 129:Generated_Source\PSoC4/Timer_1_PM.c **** }
+ 114              		.loc 1 129 0
+ 115              		@ sp needed
+ 116 000a 10BD     		pop	{r4, pc}
+ 117              		.cfi_endproc
+ 118              	.LFE2:
+ 119              		.size	Timer_1_Sleep, .-Timer_1_Sleep
+ 120              		.section	.text.Timer_1_Wakeup,"ax",%progbits
+ 121              		.align	2
+ 122              		.global	Timer_1_Wakeup
+ 123              		.code	16
+ 124              		.thumb_func
+ 125              		.type	Timer_1_Wakeup, %function
+ 126              	Timer_1_Wakeup:
+ 127              	.LFB3:
+ 130:Generated_Source\PSoC4/Timer_1_PM.c **** 
+ 131:Generated_Source\PSoC4/Timer_1_PM.c **** 
+ 132:Generated_Source\PSoC4/Timer_1_PM.c **** /*******************************************************************************
+ 133:Generated_Source\PSoC4/Timer_1_PM.c **** * Function Name: Timer_1_Wakeup
+ 134:Generated_Source\PSoC4/Timer_1_PM.c **** ********************************************************************************
+ 135:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 136:Generated_Source\PSoC4/Timer_1_PM.c **** * Summary:
+ 137:Generated_Source\PSoC4/Timer_1_PM.c **** *  Restores and enables the user configuration
+ 138:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 139:Generated_Source\PSoC4/Timer_1_PM.c **** * Parameters:
+ 140:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+ 141:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 142:Generated_Source\PSoC4/Timer_1_PM.c **** * Return:
+ 143:Generated_Source\PSoC4/Timer_1_PM.c **** *  void
+ 144:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 145:Generated_Source\PSoC4/Timer_1_PM.c **** * Global variables:
+ 146:Generated_Source\PSoC4/Timer_1_PM.c **** *  Timer_1_backup.enableState:  Is used to restore the enable state of
+ 147:Generated_Source\PSoC4/Timer_1_PM.c **** *  block on wakeup from sleep mode.
+ 148:Generated_Source\PSoC4/Timer_1_PM.c **** *
+ 149:Generated_Source\PSoC4/Timer_1_PM.c **** *******************************************************************************/
+ 150:Generated_Source\PSoC4/Timer_1_PM.c **** void Timer_1_Wakeup(void) 
+ 151:Generated_Source\PSoC4/Timer_1_PM.c **** {
+ 128              		.loc 1 151 0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 10B5     		push	{r4, lr}
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 4, -8
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 6
+
+
+ 135              		.cfi_offset 14, -4
+ 152:Generated_Source\PSoC4/Timer_1_PM.c ****     Timer_1_RestoreConfig();
+ 136              		.loc 1 152 0
+ 137 0002 FFF7FEFF 		bl	Timer_1_RestoreConfig
+ 138              	.LVL4:
+ 153:Generated_Source\PSoC4/Timer_1_PM.c ****     #if(!Timer_1_UDB_CONTROL_REG_REMOVED)
+ 154:Generated_Source\PSoC4/Timer_1_PM.c ****         if(Timer_1_backup.TimerEnableState == 1u)
+ 155:Generated_Source\PSoC4/Timer_1_PM.c ****         {     /* Enable Timer's operation */
+ 156:Generated_Source\PSoC4/Timer_1_PM.c ****                 Timer_1_Enable();
+ 157:Generated_Source\PSoC4/Timer_1_PM.c ****         } /* Do nothing if Timer was disabled before */
+ 158:Generated_Source\PSoC4/Timer_1_PM.c ****     #endif /* Remove this code section if Control register is removed */
+ 159:Generated_Source\PSoC4/Timer_1_PM.c **** }
+ 139              		.loc 1 159 0
+ 140              		@ sp needed
+ 141 0006 10BD     		pop	{r4, pc}
+ 142              		.cfi_endproc
+ 143              	.LFE3:
+ 144              		.size	Timer_1_Wakeup, .-Timer_1_Wakeup
+ 145              		.bss
+ 146              		.align	2
+ 147              		.set	.LANCHOR0,. + 0
+ 148              		.type	Timer_1_backup, %object
+ 149              		.size	Timer_1_backup, 6
+ 150              	Timer_1_backup:
+ 151 0000 00000000 		.space	6
+ 151      0000
+ 152              		.text
+ 153              	.Letext0:
+ 154              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 155              		.file 3 "Generated_Source\\PSoC4\\Timer_1.h"
+ 156              		.section	.debug_info,"",%progbits
+ 157              	.Ldebug_info0:
+ 158 0000 A3010000 		.4byte	0x1a3
+ 159 0004 0400     		.2byte	0x4
+ 160 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 161 000a 04       		.byte	0x4
+ 162 000b 01       		.uleb128 0x1
+ 163 000c 1F010000 		.4byte	.LASF28
+ 164 0010 0C       		.byte	0xc
+ 165 0011 DD010000 		.4byte	.LASF29
+ 166 0015 00000000 		.4byte	.LASF30
+ 167 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 168 001d 00000000 		.4byte	0
+ 169 0021 00000000 		.4byte	.Ldebug_line0
+ 170 0025 02       		.uleb128 0x2
+ 171 0026 01       		.byte	0x1
+ 172 0027 06       		.byte	0x6
+ 173 0028 3E020000 		.4byte	.LASF0
+ 174 002c 02       		.uleb128 0x2
+ 175 002d 01       		.byte	0x1
+ 176 002e 08       		.byte	0x8
+ 177 002f 89000000 		.4byte	.LASF1
+ 178 0033 02       		.uleb128 0x2
+ 179 0034 02       		.byte	0x2
+ 180 0035 05       		.byte	0x5
+ 181 0036 10020000 		.4byte	.LASF2
+ 182 003a 02       		.uleb128 0x2
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 7
+
+
+ 183 003b 02       		.byte	0x2
+ 184 003c 07       		.byte	0x7
+ 185 003d 54000000 		.4byte	.LASF3
+ 186 0041 02       		.uleb128 0x2
+ 187 0042 04       		.byte	0x4
+ 188 0043 05       		.byte	0x5
+ 189 0044 1A020000 		.4byte	.LASF4
+ 190 0048 02       		.uleb128 0x2
+ 191 0049 04       		.byte	0x4
+ 192 004a 07       		.byte	0x7
+ 193 004b 9C000000 		.4byte	.LASF5
+ 194 004f 02       		.uleb128 0x2
+ 195 0050 08       		.byte	0x8
+ 196 0051 05       		.byte	0x5
+ 197 0052 B6010000 		.4byte	.LASF6
+ 198 0056 02       		.uleb128 0x2
+ 199 0057 08       		.byte	0x8
+ 200 0058 07       		.byte	0x7
+ 201 0059 DD000000 		.4byte	.LASF7
+ 202 005d 03       		.uleb128 0x3
+ 203 005e 04       		.byte	0x4
+ 204 005f 05       		.byte	0x5
+ 205 0060 696E7400 		.ascii	"int\000"
+ 206 0064 02       		.uleb128 0x2
+ 207 0065 04       		.byte	0x4
+ 208 0066 07       		.byte	0x7
+ 209 0067 D0000000 		.4byte	.LASF8
+ 210 006b 04       		.uleb128 0x4
+ 211 006c BC000000 		.4byte	.LASF9
+ 212 0070 02       		.byte	0x2
+ 213 0071 E401     		.2byte	0x1e4
+ 214 0073 2C000000 		.4byte	0x2c
+ 215 0077 04       		.uleb128 0x4
+ 216 0078 C9000000 		.4byte	.LASF10
+ 217 007c 02       		.byte	0x2
+ 218 007d E501     		.2byte	0x1e5
+ 219 007f 3A000000 		.4byte	0x3a
+ 220 0083 02       		.uleb128 0x2
+ 221 0084 04       		.byte	0x4
+ 222 0085 04       		.byte	0x4
+ 223 0086 83000000 		.4byte	.LASF11
+ 224 008a 02       		.uleb128 0x2
+ 225 008b 08       		.byte	0x8
+ 226 008c 04       		.byte	0x4
+ 227 008d C2000000 		.4byte	.LASF12
+ 228 0091 02       		.uleb128 0x2
+ 229 0092 01       		.byte	0x1
+ 230 0093 08       		.byte	0x8
+ 231 0094 C4010000 		.4byte	.LASF13
+ 232 0098 04       		.uleb128 0x4
+ 233 0099 97000000 		.4byte	.LASF14
+ 234 009d 02       		.byte	0x2
+ 235 009e 8E02     		.2byte	0x28e
+ 236 00a0 A4000000 		.4byte	0xa4
+ 237 00a4 05       		.uleb128 0x5
+ 238 00a5 6B000000 		.4byte	0x6b
+ 239 00a9 02       		.uleb128 0x2
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 8
+
+
+ 240 00aa 08       		.byte	0x8
+ 241 00ab 04       		.byte	0x4
+ 242 00ac 32020000 		.4byte	.LASF15
+ 243 00b0 02       		.uleb128 0x2
+ 244 00b1 04       		.byte	0x4
+ 245 00b2 07       		.byte	0x7
+ 246 00b3 AD010000 		.4byte	.LASF16
+ 247 00b7 06       		.uleb128 0x6
+ 248 00b8 06       		.byte	0x6
+ 249 00b9 03       		.byte	0x3
+ 250 00ba 43       		.byte	0x43
+ 251 00bb E4000000 		.4byte	0xe4
+ 252 00bf 07       		.uleb128 0x7
+ 253 00c0 2E000000 		.4byte	.LASF17
+ 254 00c4 03       		.byte	0x3
+ 255 00c5 45       		.byte	0x45
+ 256 00c6 6B000000 		.4byte	0x6b
+ 257 00ca 00       		.byte	0
+ 258 00cb 07       		.uleb128 0x7
+ 259 00cc 7A000000 		.4byte	.LASF18
+ 260 00d0 03       		.byte	0x3
+ 261 00d1 48       		.byte	0x48
+ 262 00d2 77000000 		.4byte	0x77
+ 263 00d6 02       		.byte	0x2
+ 264 00d7 07       		.uleb128 0x7
+ 265 00d8 57020000 		.4byte	.LASF19
+ 266 00dc 03       		.byte	0x3
+ 267 00dd 49       		.byte	0x49
+ 268 00de 6B000000 		.4byte	0x6b
+ 269 00e2 04       		.byte	0x4
+ 270 00e3 00       		.byte	0
+ 271 00e4 08       		.uleb128 0x8
+ 272 00e5 3F000000 		.4byte	.LASF20
+ 273 00e9 03       		.byte	0x3
+ 274 00ea 53       		.byte	0x53
+ 275 00eb B7000000 		.4byte	0xb7
+ 276 00ef 09       		.uleb128 0x9
+ 277 00f0 67000000 		.4byte	.LASF21
+ 278 00f4 01       		.byte	0x1
+ 279 00f5 2B       		.byte	0x2b
+ 280 00f6 00000000 		.4byte	.LFB0
+ 281 00fa 1C000000 		.4byte	.LFE0-.LFB0
+ 282 00fe 01       		.uleb128 0x1
+ 283 00ff 9C       		.byte	0x9c
+ 284 0100 0E010000 		.4byte	0x10e
+ 285 0104 0A       		.uleb128 0xa
+ 286 0105 06000000 		.4byte	.LVL0
+ 287 0109 85010000 		.4byte	0x185
+ 288 010d 00       		.byte	0
+ 289 010e 09       		.uleb128 0x9
+ 290 010f 09010000 		.4byte	.LASF22
+ 291 0113 01       		.byte	0x1
+ 292 0114 4D       		.byte	0x4d
+ 293 0115 00000000 		.4byte	.LFB1
+ 294 0119 1C000000 		.4byte	.LFE1-.LFB1
+ 295 011d 01       		.uleb128 0x1
+ 296 011e 9C       		.byte	0x9c
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 9
+
+
+ 297 011f 2D010000 		.4byte	0x12d
+ 298 0123 0A       		.uleb128 0xa
+ 299 0124 0A000000 		.4byte	.LVL1
+ 300 0128 90010000 		.4byte	0x190
+ 301 012c 00       		.byte	0
+ 302 012d 09       		.uleb128 0x9
+ 303 012e AE000000 		.4byte	.LASF23
+ 304 0132 01       		.byte	0x1
+ 305 0133 70       		.byte	0x70
+ 306 0134 00000000 		.4byte	.LFB2
+ 307 0138 0C000000 		.4byte	.LFE2-.LFB2
+ 308 013c 01       		.uleb128 0x1
+ 309 013d 9C       		.byte	0x9c
+ 310 013e 55010000 		.4byte	0x155
+ 311 0142 0A       		.uleb128 0xa
+ 312 0143 06000000 		.4byte	.LVL2
+ 313 0147 9B010000 		.4byte	0x19b
+ 314 014b 0A       		.uleb128 0xa
+ 315 014c 0A000000 		.4byte	.LVL3
+ 316 0150 EF000000 		.4byte	0xef
+ 317 0154 00       		.byte	0
+ 318 0155 09       		.uleb128 0x9
+ 319 0156 23020000 		.4byte	.LASF24
+ 320 015a 01       		.byte	0x1
+ 321 015b 96       		.byte	0x96
+ 322 015c 00000000 		.4byte	.LFB3
+ 323 0160 08000000 		.4byte	.LFE3-.LFB3
+ 324 0164 01       		.uleb128 0x1
+ 325 0165 9C       		.byte	0x9c
+ 326 0166 74010000 		.4byte	0x174
+ 327 016a 0A       		.uleb128 0xa
+ 328 016b 06000000 		.4byte	.LVL4
+ 329 016f 0E010000 		.4byte	0x10e
+ 330 0173 00       		.byte	0
+ 331 0174 0B       		.uleb128 0xb
+ 332 0175 01020000 		.4byte	.LASF31
+ 333 0179 01       		.byte	0x1
+ 334 017a 15       		.byte	0x15
+ 335 017b E4000000 		.4byte	0xe4
+ 336 017f 05       		.uleb128 0x5
+ 337 0180 03       		.byte	0x3
+ 338 0181 00000000 		.4byte	Timer_1_backup
+ 339 0185 0C       		.uleb128 0xc
+ 340 0186 C9010000 		.4byte	.LASF25
+ 341 018a C9010000 		.4byte	.LASF25
+ 342 018e 03       		.byte	0x3
+ 343 018f 69       		.byte	0x69
+ 344 0190 0C       		.uleb128 0xc
+ 345 0191 F4000000 		.4byte	.LASF26
+ 346 0195 F4000000 		.4byte	.LASF26
+ 347 0199 03       		.byte	0x3
+ 348 019a 6A       		.byte	0x6a
+ 349 019b 0C       		.uleb128 0xc
+ 350 019c 4A020000 		.4byte	.LASF27
+ 351 01a0 4A020000 		.4byte	.LASF27
+ 352 01a4 03       		.byte	0x3
+ 353 01a5 5B       		.byte	0x5b
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 10
+
+
+ 354 01a6 00       		.byte	0
+ 355              		.section	.debug_abbrev,"",%progbits
+ 356              	.Ldebug_abbrev0:
+ 357 0000 01       		.uleb128 0x1
+ 358 0001 11       		.uleb128 0x11
+ 359 0002 01       		.byte	0x1
+ 360 0003 25       		.uleb128 0x25
+ 361 0004 0E       		.uleb128 0xe
+ 362 0005 13       		.uleb128 0x13
+ 363 0006 0B       		.uleb128 0xb
+ 364 0007 03       		.uleb128 0x3
+ 365 0008 0E       		.uleb128 0xe
+ 366 0009 1B       		.uleb128 0x1b
+ 367 000a 0E       		.uleb128 0xe
+ 368 000b 55       		.uleb128 0x55
+ 369 000c 17       		.uleb128 0x17
+ 370 000d 11       		.uleb128 0x11
+ 371 000e 01       		.uleb128 0x1
+ 372 000f 10       		.uleb128 0x10
+ 373 0010 17       		.uleb128 0x17
+ 374 0011 00       		.byte	0
+ 375 0012 00       		.byte	0
+ 376 0013 02       		.uleb128 0x2
+ 377 0014 24       		.uleb128 0x24
+ 378 0015 00       		.byte	0
+ 379 0016 0B       		.uleb128 0xb
+ 380 0017 0B       		.uleb128 0xb
+ 381 0018 3E       		.uleb128 0x3e
+ 382 0019 0B       		.uleb128 0xb
+ 383 001a 03       		.uleb128 0x3
+ 384 001b 0E       		.uleb128 0xe
+ 385 001c 00       		.byte	0
+ 386 001d 00       		.byte	0
+ 387 001e 03       		.uleb128 0x3
+ 388 001f 24       		.uleb128 0x24
+ 389 0020 00       		.byte	0
+ 390 0021 0B       		.uleb128 0xb
+ 391 0022 0B       		.uleb128 0xb
+ 392 0023 3E       		.uleb128 0x3e
+ 393 0024 0B       		.uleb128 0xb
+ 394 0025 03       		.uleb128 0x3
+ 395 0026 08       		.uleb128 0x8
+ 396 0027 00       		.byte	0
+ 397 0028 00       		.byte	0
+ 398 0029 04       		.uleb128 0x4
+ 399 002a 16       		.uleb128 0x16
+ 400 002b 00       		.byte	0
+ 401 002c 03       		.uleb128 0x3
+ 402 002d 0E       		.uleb128 0xe
+ 403 002e 3A       		.uleb128 0x3a
+ 404 002f 0B       		.uleb128 0xb
+ 405 0030 3B       		.uleb128 0x3b
+ 406 0031 05       		.uleb128 0x5
+ 407 0032 49       		.uleb128 0x49
+ 408 0033 13       		.uleb128 0x13
+ 409 0034 00       		.byte	0
+ 410 0035 00       		.byte	0
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 11
+
+
+ 411 0036 05       		.uleb128 0x5
+ 412 0037 35       		.uleb128 0x35
+ 413 0038 00       		.byte	0
+ 414 0039 49       		.uleb128 0x49
+ 415 003a 13       		.uleb128 0x13
+ 416 003b 00       		.byte	0
+ 417 003c 00       		.byte	0
+ 418 003d 06       		.uleb128 0x6
+ 419 003e 13       		.uleb128 0x13
+ 420 003f 01       		.byte	0x1
+ 421 0040 0B       		.uleb128 0xb
+ 422 0041 0B       		.uleb128 0xb
+ 423 0042 3A       		.uleb128 0x3a
+ 424 0043 0B       		.uleb128 0xb
+ 425 0044 3B       		.uleb128 0x3b
+ 426 0045 0B       		.uleb128 0xb
+ 427 0046 01       		.uleb128 0x1
+ 428 0047 13       		.uleb128 0x13
+ 429 0048 00       		.byte	0
+ 430 0049 00       		.byte	0
+ 431 004a 07       		.uleb128 0x7
+ 432 004b 0D       		.uleb128 0xd
+ 433 004c 00       		.byte	0
+ 434 004d 03       		.uleb128 0x3
+ 435 004e 0E       		.uleb128 0xe
+ 436 004f 3A       		.uleb128 0x3a
+ 437 0050 0B       		.uleb128 0xb
+ 438 0051 3B       		.uleb128 0x3b
+ 439 0052 0B       		.uleb128 0xb
+ 440 0053 49       		.uleb128 0x49
+ 441 0054 13       		.uleb128 0x13
+ 442 0055 38       		.uleb128 0x38
+ 443 0056 0B       		.uleb128 0xb
+ 444 0057 00       		.byte	0
+ 445 0058 00       		.byte	0
+ 446 0059 08       		.uleb128 0x8
+ 447 005a 16       		.uleb128 0x16
+ 448 005b 00       		.byte	0
+ 449 005c 03       		.uleb128 0x3
+ 450 005d 0E       		.uleb128 0xe
+ 451 005e 3A       		.uleb128 0x3a
+ 452 005f 0B       		.uleb128 0xb
+ 453 0060 3B       		.uleb128 0x3b
+ 454 0061 0B       		.uleb128 0xb
+ 455 0062 49       		.uleb128 0x49
+ 456 0063 13       		.uleb128 0x13
+ 457 0064 00       		.byte	0
+ 458 0065 00       		.byte	0
+ 459 0066 09       		.uleb128 0x9
+ 460 0067 2E       		.uleb128 0x2e
+ 461 0068 01       		.byte	0x1
+ 462 0069 3F       		.uleb128 0x3f
+ 463 006a 19       		.uleb128 0x19
+ 464 006b 03       		.uleb128 0x3
+ 465 006c 0E       		.uleb128 0xe
+ 466 006d 3A       		.uleb128 0x3a
+ 467 006e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 12
+
+
+ 468 006f 3B       		.uleb128 0x3b
+ 469 0070 0B       		.uleb128 0xb
+ 470 0071 27       		.uleb128 0x27
+ 471 0072 19       		.uleb128 0x19
+ 472 0073 11       		.uleb128 0x11
+ 473 0074 01       		.uleb128 0x1
+ 474 0075 12       		.uleb128 0x12
+ 475 0076 06       		.uleb128 0x6
+ 476 0077 40       		.uleb128 0x40
+ 477 0078 18       		.uleb128 0x18
+ 478 0079 9742     		.uleb128 0x2117
+ 479 007b 19       		.uleb128 0x19
+ 480 007c 01       		.uleb128 0x1
+ 481 007d 13       		.uleb128 0x13
+ 482 007e 00       		.byte	0
+ 483 007f 00       		.byte	0
+ 484 0080 0A       		.uleb128 0xa
+ 485 0081 898201   		.uleb128 0x4109
+ 486 0084 00       		.byte	0
+ 487 0085 11       		.uleb128 0x11
+ 488 0086 01       		.uleb128 0x1
+ 489 0087 31       		.uleb128 0x31
+ 490 0088 13       		.uleb128 0x13
+ 491 0089 00       		.byte	0
+ 492 008a 00       		.byte	0
+ 493 008b 0B       		.uleb128 0xb
+ 494 008c 34       		.uleb128 0x34
+ 495 008d 00       		.byte	0
+ 496 008e 03       		.uleb128 0x3
+ 497 008f 0E       		.uleb128 0xe
+ 498 0090 3A       		.uleb128 0x3a
+ 499 0091 0B       		.uleb128 0xb
+ 500 0092 3B       		.uleb128 0x3b
+ 501 0093 0B       		.uleb128 0xb
+ 502 0094 49       		.uleb128 0x49
+ 503 0095 13       		.uleb128 0x13
+ 504 0096 02       		.uleb128 0x2
+ 505 0097 18       		.uleb128 0x18
+ 506 0098 00       		.byte	0
+ 507 0099 00       		.byte	0
+ 508 009a 0C       		.uleb128 0xc
+ 509 009b 2E       		.uleb128 0x2e
+ 510 009c 00       		.byte	0
+ 511 009d 3F       		.uleb128 0x3f
+ 512 009e 19       		.uleb128 0x19
+ 513 009f 3C       		.uleb128 0x3c
+ 514 00a0 19       		.uleb128 0x19
+ 515 00a1 6E       		.uleb128 0x6e
+ 516 00a2 0E       		.uleb128 0xe
+ 517 00a3 03       		.uleb128 0x3
+ 518 00a4 0E       		.uleb128 0xe
+ 519 00a5 3A       		.uleb128 0x3a
+ 520 00a6 0B       		.uleb128 0xb
+ 521 00a7 3B       		.uleb128 0x3b
+ 522 00a8 0B       		.uleb128 0xb
+ 523 00a9 00       		.byte	0
+ 524 00aa 00       		.byte	0
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 13
+
+
+ 525 00ab 00       		.byte	0
+ 526              		.section	.debug_aranges,"",%progbits
+ 527 0000 34000000 		.4byte	0x34
+ 528 0004 0200     		.2byte	0x2
+ 529 0006 00000000 		.4byte	.Ldebug_info0
+ 530 000a 04       		.byte	0x4
+ 531 000b 00       		.byte	0
+ 532 000c 0000     		.2byte	0
+ 533 000e 0000     		.2byte	0
+ 534 0010 00000000 		.4byte	.LFB0
+ 535 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 536 0018 00000000 		.4byte	.LFB1
+ 537 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 538 0020 00000000 		.4byte	.LFB2
+ 539 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 540 0028 00000000 		.4byte	.LFB3
+ 541 002c 08000000 		.4byte	.LFE3-.LFB3
+ 542 0030 00000000 		.4byte	0
+ 543 0034 00000000 		.4byte	0
+ 544              		.section	.debug_ranges,"",%progbits
+ 545              	.Ldebug_ranges0:
+ 546 0000 00000000 		.4byte	.LFB0
+ 547 0004 1C000000 		.4byte	.LFE0
+ 548 0008 00000000 		.4byte	.LFB1
+ 549 000c 1C000000 		.4byte	.LFE1
+ 550 0010 00000000 		.4byte	.LFB2
+ 551 0014 0C000000 		.4byte	.LFE2
+ 552 0018 00000000 		.4byte	.LFB3
+ 553 001c 08000000 		.4byte	.LFE3
+ 554 0020 00000000 		.4byte	0
+ 555 0024 00000000 		.4byte	0
+ 556              		.section	.debug_line,"",%progbits
+ 557              	.Ldebug_line0:
+ 558 0000 AA000000 		.section	.debug_str,"MS",%progbits,1
+ 558      02005400 
+ 558      00000201 
+ 558      FB0E0D00 
+ 558      01010101 
+ 559              	.LASF30:
+ 560 0000 453A5C4A 		.ascii	"E:\\JP Shutter Driver\\shutter_controller.cydsn\000"
+ 560      50205368 
+ 560      75747465 
+ 560      72204472 
+ 560      69766572 
+ 561              	.LASF17:
+ 562 002e 54696D65 		.ascii	"TimerEnableState\000"
+ 562      72456E61 
+ 562      626C6553 
+ 562      74617465 
+ 562      00
+ 563              	.LASF20:
+ 564 003f 54696D65 		.ascii	"Timer_1_backupStruct\000"
+ 564      725F315F 
+ 564      6261636B 
+ 564      75705374 
+ 564      72756374 
+ 565              	.LASF3:
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 14
+
+
+ 566 0054 73686F72 		.ascii	"short unsigned int\000"
+ 566      7420756E 
+ 566      7369676E 
+ 566      65642069 
+ 566      6E7400
+ 567              	.LASF21:
+ 568 0067 54696D65 		.ascii	"Timer_1_SaveConfig\000"
+ 568      725F315F 
+ 568      53617665 
+ 568      436F6E66 
+ 568      696700
+ 569              	.LASF18:
+ 570 007a 54696D65 		.ascii	"TimerUdb\000"
+ 570      72556462 
+ 570      00
+ 571              	.LASF11:
+ 572 0083 666C6F61 		.ascii	"float\000"
+ 572      7400
+ 573              	.LASF1:
+ 574 0089 756E7369 		.ascii	"unsigned char\000"
+ 574      676E6564 
+ 574      20636861 
+ 574      7200
+ 575              	.LASF14:
+ 576 0097 72656738 		.ascii	"reg8\000"
+ 576      00
+ 577              	.LASF5:
+ 578 009c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 578      20756E73 
+ 578      69676E65 
+ 578      6420696E 
+ 578      7400
+ 579              	.LASF23:
+ 580 00ae 54696D65 		.ascii	"Timer_1_Sleep\000"
+ 580      725F315F 
+ 580      536C6565 
+ 580      7000
+ 581              	.LASF9:
+ 582 00bc 75696E74 		.ascii	"uint8\000"
+ 582      3800
+ 583              	.LASF12:
+ 584 00c2 646F7562 		.ascii	"double\000"
+ 584      6C6500
+ 585              	.LASF10:
+ 586 00c9 75696E74 		.ascii	"uint16\000"
+ 586      313600
+ 587              	.LASF8:
+ 588 00d0 756E7369 		.ascii	"unsigned int\000"
+ 588      676E6564 
+ 588      20696E74 
+ 588      00
+ 589              	.LASF7:
+ 590 00dd 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 590      206C6F6E 
+ 590      6720756E 
+ 590      7369676E 
+ 590      65642069 
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 15
+
+
+ 591              	.LASF26:
+ 592 00f4 54696D65 		.ascii	"Timer_1_WriteCounter\000"
+ 592      725F315F 
+ 592      57726974 
+ 592      65436F75 
+ 592      6E746572 
+ 593              	.LASF22:
+ 594 0109 54696D65 		.ascii	"Timer_1_RestoreConfig\000"
+ 594      725F315F 
+ 594      52657374 
+ 594      6F726543 
+ 594      6F6E6669 
+ 595              	.LASF28:
+ 596 011f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 596      43313120 
+ 596      352E342E 
+ 596      31203230 
+ 596      31363036 
+ 597 0152 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 597      20726576 
+ 597      6973696F 
+ 597      6E203233 
+ 597      37373135 
+ 598 0185 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 598      66756E63 
+ 598      74696F6E 
+ 598      2D736563 
+ 598      74696F6E 
+ 599              	.LASF16:
+ 600 01ad 73697A65 		.ascii	"sizetype\000"
+ 600      74797065 
+ 600      00
+ 601              	.LASF6:
+ 602 01b6 6C6F6E67 		.ascii	"long long int\000"
+ 602      206C6F6E 
+ 602      6720696E 
+ 602      7400
+ 603              	.LASF13:
+ 604 01c4 63686172 		.ascii	"char\000"
+ 604      00
+ 605              	.LASF25:
+ 606 01c9 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 606      725F315F 
+ 606      52656164 
+ 606      436F756E 
+ 606      74657200 
+ 607              	.LASF29:
+ 608 01dd 47656E65 		.ascii	"Generated_Source\\PSoC4\\Timer_1_PM.c\000"
+ 608      72617465 
+ 608      645F536F 
+ 608      75726365 
+ 608      5C50536F 
+ 609              	.LASF31:
+ 610 0201 54696D65 		.ascii	"Timer_1_backup\000"
+ 610      725F315F 
+ 610      6261636B 
+ 610      757000
+ARM GAS  C:\Users\PHYSLA~1\AppData\Local\Temp\ccD1eymo.s 			page 16
+
+
+ 611              	.LASF2:
+ 612 0210 73686F72 		.ascii	"short int\000"
+ 612      7420696E 
+ 612      7400
+ 613              	.LASF4:
+ 614 021a 6C6F6E67 		.ascii	"long int\000"
+ 614      20696E74 
+ 614      00
+ 615              	.LASF24:
+ 616 0223 54696D65 		.ascii	"Timer_1_Wakeup\000"
+ 616      725F315F 
+ 616      57616B65 
+ 616      757000
+ 617              	.LASF15:
+ 618 0232 6C6F6E67 		.ascii	"long double\000"
+ 618      20646F75 
+ 618      626C6500 
+ 619              	.LASF0:
+ 620 023e 7369676E 		.ascii	"signed char\000"
+ 620      65642063 
+ 620      68617200 
+ 621              	.LASF27:
+ 622 024a 54696D65 		.ascii	"Timer_1_Stop\000"
+ 622      725F315F 
+ 622      53746F70 
+ 622      00
+ 623              	.LASF19:
+ 624 0257 496E7465 		.ascii	"InterruptMaskValue\000"
+ 624      72727570 
+ 624      744D6173 
+ 624      6B56616C 
+ 624      756500
+ 625              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
